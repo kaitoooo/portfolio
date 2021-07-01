@@ -1,0 +1,8 @@
+h1 {
+    color: green;
+    font-size: get_vw(40);
+    @include center;
+    @include sp {
+        font-size: get_vw_sp(90);
+    }
+}

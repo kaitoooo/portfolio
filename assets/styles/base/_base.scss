@@ -1,0 +1,66 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font_all;
+  color: $color_black;
+  font-size: 1.6em;
+  font-weight: 500;
+  word-spacing: 1px;
+  letter-spacing: normal;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  text-rendering: optimizeLegibility;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-print-color-adjust: exact;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  object-fit: cover;
+}
+
+ul,
+ol {
+  [class] {
+    list-style: none;
+  }
+}
+
+a,
+a:hover,
+a:visited {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+::selection {
+  background-color: $color_black;
+  color: $color_white;
+}
+
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.disnone {
+  display: none;
+}
+
+.sp {
+  display: none;
+  @include sp {
+    display: block;
+  }
+}
