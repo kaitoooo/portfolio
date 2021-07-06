@@ -5,8 +5,8 @@ const environment = process.env.NODE_ENV || 'development';
 const envSetting = require(`./env/env.${environment}.ts`).env;
 
 // meta
-const title = 'タイトル';
-const description = '説明';
+const title = 'Kaito Takase Portfolio';
+const description = 'Portfolio of front-end engineer Kaito Takase.';
 
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
@@ -14,7 +14,7 @@ export default {
         title: title,
         htmlAttrs: {
             lang: 'ja',
-            prefix: 'og: http://ogp.me/ns#'
+            prefix: 'og: http://ogp.me/ns#',
         },
         meta: [
             { charset: 'utf-8' },
@@ -33,24 +33,25 @@ export default {
             { hid: 'google-site-verification', name: 'google-site-verification', content: '' },
             { property: 'apple-mobile-web-app-title', content: title },
             { property: 'application-name', content: title },
-            { property: 'msapplication-TileColor', content: '#da532c' },
-            { property: 'theme-color', content: '#ffffff' },
+            { property: 'msapplication-TileColor', content: '#2a2a2a' },
+            { property: 'theme-color', content: '#2a2a2a' },
             { name: 'apple-mobile-web-app-capable', content: 'yes' },
-            { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }
+            { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             { hid: 'canonical', rel: 'canonical', href: envSetting.url },
-            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Sans+JP:100,800&display=swap&subset=japanese' }
-        ]
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Suez+One&display=swap' },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap' },
+        ],
     },
     mode: 'universal',
     env: envSetting,
     generate: {
-        fallback: true
+        fallback: true,
     },
     router: {
-        base: envSetting.base
+        base: envSetting.base,
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
@@ -62,19 +63,25 @@ export default {
             '~/assets/styles/modules/_animation.scss',
             '~/assets/styles/modules/_variables.scss',
             '~/assets/styles/modules/_functions.scss',
+            '~/assets/styles/modules/_transition.scss',
+            '~/assets/styles/components/index/_swiper.scss',
         ],
     },
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [],
+    plugins: [
+        { src: '~/plugins/swiper', mode: 'client' },
+        { src: '~/plugins/vue-scrollto', mode: 'client' },
+    ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
-    components: true,
-
+    components: {
+        dirs: ['~/components', '~/components/common'],
+    },
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
         // https://go.nuxtjs.dev/typescript
-        '@nuxt/typescript-build'
+        '@nuxt/typescript-build',
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
@@ -84,11 +91,11 @@ export default {
     build: {
         loaders: {
             scss: {
-                implementation: Sass
+                implementation: Sass,
                 // sassOptions: {
                 //     fiber: Fiber,
                 // },
-            }
+            },
         },
         babel: {
             presets({ environment }: { environment: any }) {
@@ -98,11 +105,11 @@ export default {
                         {
                             buildTarget: environment ? 'server' : 'client',
                             useBuiltIns: 'usage',
-                            corejs: { version: 3 }
-                        }
-                    ]
+                            corejs: { version: 3 },
+                        },
+                    ],
                 ];
-            }
+            },
         },
         filenames: {
             app: () => (environment !== 'development' ? '[name].[chunkhash:7].js' : '[name].js'),
@@ -110,7 +117,7 @@ export default {
             css: () => (environment !== 'development' ? '[name].[chunkhash:7].js' : '[name].js'),
             img: () => (environment !== 'development' ? '[path][name].[contenthash:7].[ext]' : '[path][name].[ext]'),
             font: () => (environment !== 'development' ? '[path][name].[contenthash:7].[ext]' : '[path][name].[ext]'),
-            video: () => (environment !== 'development' ? '[path][name].[contenthash:7].[ext]' : '[path][name].[ext]')
+            video: () => (environment !== 'development' ? '[path][name].[contenthash:7].[ext]' : '[path][name].[ext]'),
         },
         html: {
             minify: {
@@ -125,8 +132,8 @@ export default {
                 useShortDoctype: true,
                 removeComments: true,
                 collapseInlineTagWhitespace: true,
-                collapseWhitespace: true
-            }
-        }
-    }
+                collapseWhitespace: true,
+            },
+        },
+    },
 };

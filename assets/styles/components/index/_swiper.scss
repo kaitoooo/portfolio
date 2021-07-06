@@ -1,0 +1,103 @@
+.swiper-pagination {
+    left: 0;
+    right: 0;
+    bottom: 32px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translate(0, 20px);
+    z-index: 3;
+    @include sp {
+        bottom: get_vw_sp(12);
+    }
+
+    &.is-active {
+        opacity: 1;
+        transform: translate(0, 0);
+        transition: 0.4s cubic-bezier(0.39, 0.42, 0.59, 0.63);
+    }
+}
+.swiper-container-fade .swiper-slide {
+    opacity: 0 !important;
+}
+.swiper-container-fade .swiper-slide-active,
+.swiper-container-fade .swiper-slide-active .swiper-slide-active {
+    opacity: 1 !important;
+
+    .intro__box {
+        animation-name: fade-in;
+        animation-duration: 0.3s;
+        animation-delay: 0.6s;
+        animation-fill-mode: both;
+    }
+}
+
+.swiper-pagination-bullet {
+    background: $color-darkgray !important;
+    opacity: 0.5 !important;
+    margin: 0 6px;
+}
+.swiper-pagination-bullet-active {
+    background: $color-gray !important;
+    opacity: 1 !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    width: 50px;
+    height: 50px;
+    top: 0;
+    margin: 0;
+    background-color: #000;
+    @include sp {
+        width: get_vw_sp(50);
+        height: get_vw_sp(50);
+    }
+
+    &::after {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-top: solid 2px $color-white;
+        border-right: solid 2px $color-white;
+        @include sp {
+            width: get_vw_sp(14);
+            height: get_vw_sp(14);
+            border-top: solid get_vw_sp(3) $color-white;
+            border-right: solid get_vw_sp(3) $color-white;
+        }
+    }
+}
+.swiper-button-prev {
+    left: 0;
+    &::after {
+        transform: rotate(-135deg);
+    }
+    // &:hover {
+    //     &::after {
+    //         animation: prev 0.3s forwards;
+    //     }
+    // }
+}
+.swiper-button-next {
+    right: 0;
+    &::after {
+        transform: rotate(45deg);
+    }
+    // &:hover {
+    //     &::after {
+    //         animation: next 0.3s forwards;
+    //     }
+    // }
+}
+.intro__button {
+    position: relative;
+    opacity: 0;
+    transform: translate(0, 20px);
+    z-index: 3;
+
+    &.is-active {
+        opacity: 1;
+        transform: translate(0, 0);
+        transition: 0.4s cubic-bezier(0.39, 0.42, 0.59, 0.63);
+    }
+}
