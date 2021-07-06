@@ -1,6 +1,5 @@
-import * as THREE from 'three/build/three.module';
-// import * as THREE from 'three';
-import 'imports-loader?THREE=three!three/examples/js/loaders/GLTFLoader.js';
+const THREE = require('three');
+import 'imports-loader?THREE=three!three/examples/js/loaders/GLTFLoader';
 import { throttle } from './utils/throttle';
 import { gsap } from 'gsap';
 
@@ -104,7 +103,6 @@ export default class Webgl {
         }
     }
     setLoading() {
-        // const loader = new GLTFLoader();
         const loader = new THREE.GLTFLoader();
         loader.load(this.srcObj, (obj) => {
             const data = obj.scene;
