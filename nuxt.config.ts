@@ -24,7 +24,7 @@ export default {
             { hid: 'og:type', property: 'og:type', content: 'website' },
             { hid: 'og:locale', property: 'og:locale', content: 'ja_JP' },
             { hid: 'og:url', property: 'og:url', content: envSetting.url },
-            { hid: 'og:image', property: 'og:image', content: envSetting.url + '/img/ogp.png' },
+            { hid: 'og:image', property: 'og:image', content: envSetting.url + '/ogp.png' },
             { hid: 'og:site_name', property: 'og:site_name', content: title },
             { hid: 'og:title', property: 'og:title', content: title },
             { hid: 'og:description', property: 'og:description', content: description },

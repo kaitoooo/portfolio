@@ -125,7 +125,6 @@ export default Vue.extend({
         };
     },
     mounted() {
-        // new Webgl();
         this.init();
     },
     methods: {
@@ -154,7 +153,7 @@ export default Vue.extend({
                 cameraAspect: window.innerWidth / window.innerHeight,
                 controls: null,
             };
-            this.srcObj = process.env.NODE_ENV == 'development' ? '/obj/robot.gltf' : '/study/portfolio/obj/robot.gltf';
+            this.srcObj = process.env.NODE_ENV == 'development' ? '/obj/robot.gltf' : '/obj/robot.gltf';
 
             this.flg = {
                 loaded: false,
