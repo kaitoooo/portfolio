@@ -72,6 +72,7 @@ export default {
     plugins: [
         { src: '~/plugins/swiper', mode: 'client' },
         { src: '~/plugins/vue-scrollto', mode: 'client' },
+        { src: '~plugins/three.js', mode: 'client' },
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -89,6 +90,8 @@ export default {
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
+        transpile: ['three'],
+
         loaders: {
             scss: {
                 implementation: Sass,
@@ -105,7 +108,7 @@ export default {
                         {
                             buildTarget: environment ? 'server' : 'client',
                             useBuiltIns: 'usage',
-                            corejs: { version: 3 },
+                            corejs: { version: 3.8 },
                         },
                     ],
                 ];

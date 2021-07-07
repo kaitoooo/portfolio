@@ -41,7 +41,7 @@ export default Vue.extend({
                     document.body.style.backgroundColor = '#2a2a2a';
                 }
             } else {
-                if (scroll > 3000) {
+                if (scroll > 3300) {
                     document.body.style.backgroundColor = '#310133';
                 } else if (scroll > 2500) {
                     document.body.style.backgroundColor = '#053301';
