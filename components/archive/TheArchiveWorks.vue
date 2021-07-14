@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/3d-animation/',
+                    pc: '3d-animation.png',
+                    retina: '3d-animation@2x.png',
+                    alt: '3D Demo Blender Animation',
+                    width: 1341,
+                    height: 733,
+                    title: '3D Demo Blender Animation',
+                    day: '2021 / 07 / 13',
+                },
+                {
                     link: 'https://kaito-takase.dev/3d-watch/',
                     pc: 'watch.png',
                     retina: 'watch@2x.png',

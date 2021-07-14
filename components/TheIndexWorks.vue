@@ -16,6 +16,19 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
+                <a href="https://kaito-takase.dev/3d-animation/" class="works__list--link">
+                    <AppImage :pc-img="`3d-animation.png`" :pc-img-retina="`3d-animation@2x.png`" :alt="`3D Demo Blender Animation`" :role="``" :width="1341" :height="733" />
+                    <figcaption class="works__caption">
+                        <h3 class="works__caption--title">3D Demo Blender Animation</h3>
+                        <p class="works__caption--text">2021 / 07 / 13</p>
+                    </figcaption>
+                </a>
+            </li>
+            <li class="works__list--item" data-scroll data-scroll-type="fadeIn">
+                <div class="works__border works__border--top"></div>
+                <div class="works__border works__border--bottom"></div>
+                <div class="works__border works__border--left"></div>
+                <div class="works__border works__border--right"></div>
                 <a href="https://kaito-takase.dev/3d-dice/" class="works__list--link">
                     <AppImage :pc-img="`dice.png`" :pc-img-retina="`dice@2x.png`" :alt="`3D Demo Dice`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
