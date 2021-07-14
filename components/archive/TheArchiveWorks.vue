@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/distortion-hover-effect/',
+                    pc: 'hoverEffect.png',
+                    retina: 'hoverEffect@2x.png',
+                    alt: 'Demo DistortionHoverEffect',
+                    width: 1341,
+                    height: 733,
+                    title: 'Demo DistortionHoverEffect',
+                    day: '2021 / 07 / 15',
+                },
+                {
                     link: 'https://kaito-takase.dev/3d-animation/',
                     pc: '3d-animation.png',
                     retina: '3d-animation@2x.png',
