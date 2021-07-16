@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/change-image/',
+                    pc: 'changeImg.png',
+                    retina: 'changeImg@2x.png',
+                    alt: 'Demo Change Image',
+                    width: 1341,
+                    height: 733,
+                    title: 'Demo Change Image',
+                    day: '2021 / 07 / 16',
+                },
+                {
                     link: 'https://kaito-takase.dev/distortion-hover-effect/',
                     pc: 'hoverEffect.png',
                     retina: 'hoverEffect@2x.png',
