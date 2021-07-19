@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/glsl-distortion/',
+                    pc: 'glsl-distortion.png',
+                    retina: 'glsl-distortion@2x.png',
+                    alt: 'Demo GLSL DistortionHoverEffect',
+                    width: 1341,
+                    height: 733,
+                    title: 'Demo GLSL DistortionHoverEffect',
+                    day: '2021 / 07 / 19',
+                },
+                {
                     link: 'https://kaito-takase.dev/change-image/',
                     pc: 'changeImg.png',
                     retina: 'changeImg@2x.png',
