@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/marquee-animation/',
+                    pc: 'marquee.png',
+                    retina: 'marquee@2x.png',
+                    alt: 'Marquee Hover Animation',
+                    width: 1341,
+                    height: 733,
+                    title: 'Marquee Hover Animation',
+                    day: '2021 / 07 / 20',
+                },
+                {
                     link: 'https://kaito-takase.dev/glsl-distortion/',
                     pc: 'glsl-distortion.png',
                     retina: 'glsl-distortion@2x.png',
