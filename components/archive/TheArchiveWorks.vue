@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/scrolling-bent-text/',
+                    pc: 'bend-text.png',
+                    retina: 'bend-text@2x.png',
+                    alt: 'Scrolling Bent Text',
+                    width: 1341,
+                    height: 733,
+                    title: 'Scrolling Bent Text',
+                    day: '2021 / 07 / 25',
+                },
+                {
                     link: 'https://kaito-takase.dev/marquee-animation/',
                     pc: 'marquee.png',
                     retina: 'marquee@2x.png',
