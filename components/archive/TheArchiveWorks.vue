@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/horizontal-smoothscroll/',
+                    pc: 'HorizontalSmoothScroll.png',
+                    retina: 'HorizontalSmoothScroll@2x.png',
+                    alt: 'Horizontal Smooth Scroll',
+                    width: 1341,
+                    height: 733,
+                    title: 'Horizontal Smooth Scroll',
+                    day: '2021 / 07 / 26',
+                },
+                {
                     link: 'https://kaito-takase.dev/scrolling-bent-text/',
                     pc: 'bend-text.png',
                     retina: 'bend-text@2x.png',
