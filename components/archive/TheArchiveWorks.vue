@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/3d-star/',
+                    pc: '3d-star.png',
+                    retina: '3d-star@2x.png',
+                    alt: '3D Demo Star',
+                    width: 1341,
+                    height: 733,
+                    title: '3D Demo Star',
+                    day: '2021 / 09 / 07',
+                },
+                {
                     link: 'https://kaito-takase.dev/horizontal-smoothscroll/',
                     pc: 'HorizontalSmoothScroll.png',
                     retina: 'HorizontalSmoothScroll@2x.png',
