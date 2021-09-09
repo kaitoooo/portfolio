@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/spy-navigation/',
+                    pc: 'spy-navigation.png',
+                    retina: 'spy-navigation@2x.png',
+                    alt: 'Spy Navigation',
+                    width: 1341,
+                    height: 733,
+                    title: 'Spy Navigation',
+                    day: '2021 / 09 / 09',
+                },
+                {
                     link: 'https://kaito-takase.dev/3d-star/',
                     pc: '3d-star.png',
                     retina: '3d-star@2x.png',
