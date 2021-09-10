@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-// import { Webgl } from '~/assets/scripts/webgl';
+const imagesLoaded = require('imagesloaded');
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { throttle } from '~/assets/scripts/utils/throttle';
 import { gsap } from 'gsap';
@@ -125,9 +125,27 @@ export default Vue.extend({
         };
     },
     mounted() {
-        this.init();
+        this.load();
     },
     methods: {
+        load() {
+            // 画像の読み込み開始
+            const preloadImages = () => {
+                return new Promise((resolve) => {
+                    imagesLoaded(
+                        document.querySelectorAll('img'),
+                        {
+                            background: true,
+                        },
+                        resolve
+                    );
+                });
+            };
+            preloadImages().then(() => {
+                // 画像を全て読み込んだら実行
+                this.init();
+            });
+        },
         init() {
             this.wd = window.innerWidth;
             this.wh = window.innerHeight;
@@ -187,8 +205,6 @@ export default Vue.extend({
                 antialias: true,
                 alpha: true, //背景色を設定しないとき、背景を透明にする
             });
-
-            // this.three.renderer.setClearColor(0xffffff); //背景色
             this.three.renderer.setPixelRatio(window.devicePixelRatio);
             this.three.renderer.setSize(this.wd, this.wh);
             this.three.renderer.physicallyCorrectLights = true;
