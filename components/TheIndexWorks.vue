@@ -16,7 +16,7 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
-                <a href="https://kaito-takase.dev/3d-animation/" class="works__list--link">
+                <a href="https://kaito-takase.dev/3d-animation/" target="_blank" rel="noopener noreferrer" class="works__list--link">
                     <AppImage :pc-img="`3d-animation.png`" :pc-img-retina="`3d-animation@2x.png`" :alt="`3D Demo Blender Animation`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
                         <h3 class="works__caption--title">3D Demo Blender Animation</h3>
@@ -29,7 +29,7 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
-                <a href="https://kaito-takase.dev/3d-dice/" class="works__list--link">
+                <a href="https://kaito-takase.dev/3d-dice/" target="_blank" rel="noopener noreferrer" class="works__list--link">
                     <AppImage :pc-img="`dice.png`" :pc-img-retina="`dice@2x.png`" :alt="`3D Demo Dice`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
                         <h3 class="works__caption--title">3D Demo Dice</h3>
@@ -42,7 +42,7 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
-                <a href="https://kaito-takase.dev/3d-watch/" class="works__list--link">
+                <a href="https://kaito-takase.dev/3d-watch/" target="_blank" rel="noopener noreferrer" class="works__list--link">
                     <AppImage :pc-img="`watch.png`" :pc-img-retina="`watch@2x.png`" :alt="`3D Demo Watch`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
                         <h3 class="works__caption--title">3D Demo Watch</h3>
@@ -55,7 +55,7 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
-                <a href="https://kaito-takase.dev/3d-juice/" class="works__list--link">
+                <a href="https://kaito-takase.dev/3d-juice/" target="_blank" rel="noopener noreferrer" class="works__list--link">
                     <AppImage :pc-img="`juice.png`" :pc-img-retina="`juice@2x.png`" :alt="`3D Demo Juice`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
                         <h3 class="works__caption--title">3D Demo Juice</h3>
@@ -68,7 +68,7 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
-                <a href="https://kaito-takase.dev/page-transition/" class="works__list--link">
+                <a href="https://kaito-takase.dev/page-transition/" target="_blank" rel="noopener noreferrer" class="works__list--link">
                     <AppImage :pc-img="`page_transition.png`" :pc-img-retina="`page_transition@2x.png`" :alt="`Page Transition`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
                         <h3 class="works__caption--title">Page Transition</h3>
