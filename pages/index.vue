@@ -25,33 +25,6 @@ export default Vue.extend({
                 this.$scrollTo(hash);
             }
         }, 500);
-
-        window.addEventListener('scroll', function () {
-            const scroll = window.pageYOffset;
-            const wd = window.innerWidth;
-            const sp = 768;
-            if (wd <= sp) {
-                if (scroll > 1500) {
-                    document.body.style.backgroundColor = '#310133';
-                } else if (scroll > 1000) {
-                    document.body.style.backgroundColor = '#053301';
-                } else if (scroll > 500) {
-                    document.body.style.backgroundColor = '#0f0133';
-                } else {
-                    document.body.style.backgroundColor = '#2a2a2a';
-                }
-            } else {
-                if (scroll > 3300) {
-                    document.body.style.backgroundColor = '#310133';
-                } else if (scroll > 2500) {
-                    document.body.style.backgroundColor = '#053301';
-                } else if (scroll > 1000) {
-                    document.body.style.backgroundColor = '#0f0133';
-                } else {
-                    document.body.style.backgroundColor = '#2a2a2a';
-                }
-            }
-        });
     },
 });
 </script>
