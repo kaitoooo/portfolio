@@ -12,7 +12,7 @@
         </h2>
         <ul class="works-all__list">
             <li class="works-all__list--item" v-for="(thumbnail, index) in thumbnailList()" :key="index">
-                <a :href="thumbnail.link" class="works-all__list--link" data-scroll data-scroll-type="fadeIn">
+                <a :href="thumbnail.link" target="_blank" rel="noopener noreferrer" class="works-all__list--link" data-scroll data-scroll-type="fadeIn">
                     <div class="works-all__border works-all__border--top"></div>
                     <div class="works-all__border works-all__border--bottom"></div>
                     <div class="works-all__border works-all__border--left"></div>
