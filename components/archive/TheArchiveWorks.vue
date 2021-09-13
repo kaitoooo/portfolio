@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/menu-hover-effects/',
+                    pc: 'menu-hover-effects.png',
+                    retina: 'menu-hover-effects@2x.png',
+                    alt: 'Menu Hover Effects',
+                    width: 1341,
+                    height: 733,
+                    title: 'Menu Hover Effects',
+                    day: '2021 / 09 / 14',
+                },
+                {
                     link: 'https://kaito-takase.dev/spy-navigation/',
                     pc: 'spy-navigation.png',
                     retina: 'spy-navigation@2x.png',
