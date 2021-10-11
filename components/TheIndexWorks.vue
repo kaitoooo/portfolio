@@ -16,6 +16,19 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
+                <a href="https://kaito-takase.dev/3d-animation-shadow/" target="_blank" rel="noopener noreferrer" class="works__list--link">
+                    <AppImage :pc-img="`3d-shadow.png`" :pc-img-retina="`3d-shadow@2x.png`" :alt="`3D Demo Animation Shadow`" :role="``" :width="1341" :height="733" />
+                    <figcaption class="works__caption">
+                        <h3 class="works__caption--title">3D Demo Animation Shadow</h3>
+                        <p class="works__caption--text">2021 / 10 / 11</p>
+                    </figcaption>
+                </a>
+            </li>
+            <li class="works__list--item" data-scroll data-scroll-type="fadeIn">
+                <div class="works__border works__border--top"></div>
+                <div class="works__border works__border--bottom"></div>
+                <div class="works__border works__border--left"></div>
+                <div class="works__border works__border--right"></div>
                 <a href="https://kaito-takase.dev/3d-animation/" target="_blank" rel="noopener noreferrer" class="works__list--link">
                     <AppImage :pc-img="`3d-animation.png`" :pc-img-retina="`3d-animation@2x.png`" :alt="`3D Demo Blender Animation`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
@@ -60,19 +73,6 @@
                     <figcaption class="works__caption">
                         <h3 class="works__caption--title">3D Demo Juice</h3>
                         <p class="works__caption--text">2021 / 06 / 24</p>
-                    </figcaption>
-                </a>
-            </li>
-            <li class="works__list--item" data-scroll data-scroll-type="fadeIn">
-                <div class="works__border works__border--top"></div>
-                <div class="works__border works__border--bottom"></div>
-                <div class="works__border works__border--left"></div>
-                <div class="works__border works__border--right"></div>
-                <a href="https://kaito-takase.dev/page-transition/" target="_blank" rel="noopener noreferrer" class="works__list--link">
-                    <AppImage :pc-img="`page_transition.png`" :pc-img-retina="`page_transition@2x.png`" :alt="`Page Transition`" :role="``" :width="1341" :height="733" />
-                    <figcaption class="works__caption">
-                        <h3 class="works__caption--title">Page Transition</h3>
-                        <p class="works__caption--text">2021 / 01 / 27</p>
                     </figcaption>
                 </a>
             </li>

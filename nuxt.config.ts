@@ -59,9 +59,9 @@ export default {
     styleResources: {
         scss: [
             '~/assets/styles/modules/_variables.scss',
+            '~/assets/styles/modules/_variables-easing.scss',
             '~/assets/styles/modules/_mq.scss',
             '~/assets/styles/modules/_animation.scss',
-            '~/assets/styles/modules/_variables.scss',
             '~/assets/styles/modules/_functions.scss',
             '~/assets/styles/modules/_transition.scss',
             '~/assets/styles/components/index/_swiper.scss',
