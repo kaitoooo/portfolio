@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/3d-banana/',
+                    pc: '3d-banana.png',
+                    retina: '3d-banana@2x.png',
+                    alt: '3D Demo Clone Object',
+                    width: 1341,
+                    height: 733,
+                    title: '3D Demo Clone Object',
+                    day: '2021 / 10 / 11',
+                },
+                {
                     link: 'https://kaito-takase.dev/3d-animation-shadow/',
                     pc: '3d-shadow.png',
                     retina: '3d-shadow@2x.png',
