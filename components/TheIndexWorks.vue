@@ -16,6 +16,45 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
+                <a href="https://kaito-takase.dev/3d-plane/" target="_blank" rel="noopener noreferrer" class="works__list--link">
+                    <AppImage :pc-img="`3d-plane.png`" :pc-img-retina="`3d-plane@2x.png`" :alt="`3D Demo ScrollTrigger`" :role="``" :width="1341" :height="733" />
+                    <figcaption class="works__caption">
+                        <h3 class="works__caption--title">3D Demo ScrollTrigger</h3>
+                        <p class="works__caption--text">2021 / 11 / 1</p>
+                    </figcaption>
+                </a>
+            </li>
+            <li class="works__list--item" data-scroll data-scroll-type="fadeIn">
+                <div class="works__border works__border--top"></div>
+                <div class="works__border works__border--bottom"></div>
+                <div class="works__border works__border--left"></div>
+                <div class="works__border works__border--right"></div>
+                <a href="https://kaito-takase.dev/3d-physics/" target="_blank" rel="noopener noreferrer" class="works__list--link">
+                    <AppImage :pc-img="`3d-physics.png`" :pc-img-retina="`3d-physics@2x.png`" :alt="`3D Demo Physics`" :role="``" :width="1341" :height="733" />
+                    <figcaption class="works__caption">
+                        <h3 class="works__caption--title">3D Demo Physics</h3>
+                        <p class="works__caption--text">2021 / 10 / 24</p>
+                    </figcaption>
+                </a>
+            </li>
+            <li class="works__list--item" data-scroll data-scroll-type="fadeIn">
+                <div class="works__border works__border--top"></div>
+                <div class="works__border works__border--bottom"></div>
+                <div class="works__border works__border--left"></div>
+                <div class="works__border works__border--right"></div>
+                <a href="https://kaito-takase.dev/3d-car/" target="_blank" rel="noopener noreferrer" class="works__list--link">
+                    <AppImage :pc-img="`3d-car.png`" :pc-img-retina="`3d-car@2x.png`" :alt="`3D Demo Key Press Animation`" :role="``" :width="1341" :height="733" />
+                    <figcaption class="works__caption">
+                        <h3 class="works__caption--title">3D Demo Key Press Animation</h3>
+                        <p class="works__caption--text">2021 / 10 / 16</p>
+                    </figcaption>
+                </a>
+            </li>
+            <li class="works__list--item" data-scroll data-scroll-type="fadeIn">
+                <div class="works__border works__border--top"></div>
+                <div class="works__border works__border--bottom"></div>
+                <div class="works__border works__border--left"></div>
+                <div class="works__border works__border--right"></div>
                 <a href="https://kaito-takase.dev/3d-animation-shadow/" target="_blank" rel="noopener noreferrer" class="works__list--link">
                     <AppImage :pc-img="`3d-shadow.png`" :pc-img-retina="`3d-shadow@2x.png`" :alt="`3D Demo Animation Shadow`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
