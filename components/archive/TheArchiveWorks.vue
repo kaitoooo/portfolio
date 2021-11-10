@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/3d-ice/',
+                    pc: '3d-ice.png',
+                    retina: '3d-ice@2x.png',
+                    alt: '3D Demo Ice',
+                    width: 1341,
+                    height: 733,
+                    title: '3D Demo Ice',
+                    day: '2021 / 11 / 9',
+                },
+                {
                     link: 'https://kaito-takase.dev/3d-multiple/',
                     pc: '3d-multiple.png',
                     retina: '3d-multiple@2x.png',

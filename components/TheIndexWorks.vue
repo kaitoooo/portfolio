@@ -16,6 +16,19 @@
                 <div class="works__border works__border--bottom"></div>
                 <div class="works__border works__border--left"></div>
                 <div class="works__border works__border--right"></div>
+                <a href="https://kaito-takase.dev/3d-ice/" target="_blank" rel="noopener noreferrer" class="works__list--link">
+                    <AppImage :pc-img="`3d-ice.png`" :pc-img-retina="`3d-ice@2x.png`" :alt="`3D Demo Ice`" :role="``" :width="1341" :height="733" />
+                    <figcaption class="works__caption">
+                        <h3 class="works__caption--title">3D Demo Ice</h3>
+                        <p class="works__caption--text">2021 / 11 / 9</p>
+                    </figcaption>
+                </a>
+            </li>
+            <li class="works__list--item" data-scroll data-scroll-type="fadeIn">
+                <div class="works__border works__border--top"></div>
+                <div class="works__border works__border--bottom"></div>
+                <div class="works__border works__border--left"></div>
+                <div class="works__border works__border--right"></div>
                 <a href="https://kaito-takase.dev/3d-plane2/" target="_blank" rel="noopener noreferrer" class="works__list--link">
                     <AppImage :pc-img="`3d-plane2.png`" :pc-img-retina="`3d-plane2@2x.png`" :alt="`3D Demo Plane`" :role="``" :width="1341" :height="733" />
                     <figcaption class="works__caption">
