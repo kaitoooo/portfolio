@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/3d-banana-apple/',
+                    pc: '3d-banana-apple.png',
+                    retina: '3d-banana-apple@2x.png',
+                    alt: '3D Demo Banana and Apple',
+                    width: 1341,
+                    height: 733,
+                    title: '3D Demo Banana and Apple',
+                    day: '2021 / 11 / 11',
+                },
+                {
                     link: 'https://kaito-takase.dev/3d-ice/',
                     pc: '3d-ice.png',
                     retina: '3d-ice@2x.png',
