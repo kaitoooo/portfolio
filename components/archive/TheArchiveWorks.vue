@@ -51,6 +51,16 @@ export default Vue.extend({
         return {
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/3d-room/',
+                    pc: '3d-room2.png',
+                    retina: '3d-room2@2x.png',
+                    alt: '3D Demo Room',
+                    width: 1341,
+                    height: 733,
+                    title: '3D Demo Room',
+                    day: '2021 / 11 / 18',
+                },
+                {
                     link: 'https://kaito-takase.dev/3d-soccer/',
                     pc: '3d-soccer.png',
                     retina: '3d-soccer@2x.png',
