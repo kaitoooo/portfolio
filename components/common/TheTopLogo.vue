@@ -1,6 +1,6 @@
 <template>
     <section class="top-logo">
-        <nuxt-link to="/" class="top-logo__link" @mouseover.native="linkOver" @mouseleave.native="linkLeave">
+        <nuxt-link to="/" class="top-logo__link" @mouseover.native="linkOver" @mouseleave.native="linkLeave" data-logo="text">
             <span class="top-logo__letter" data-logo="letter">T</span>
             <span class="top-logo__letter" data-logo="letter">a</span>
             <span class="top-logo__letter" data-logo="letter">k</span>
@@ -26,6 +26,7 @@ import { gsap } from 'gsap';
 export default Vue.extend({
     methods: {
         linkOver() {
+            // hover
             gsap.to('[data-logo="letter"]', {
                 stagger: 0.05,
                 ease: 'power4.inOut',
@@ -33,7 +34,7 @@ export default Vue.extend({
             });
         },
         linkLeave() {
-            // close
+            // out
             gsap.to('[data-logo="letter"]', {
                 stagger: 0.01,
                 ease: 'power4.inOut',

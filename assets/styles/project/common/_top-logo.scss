@@ -21,9 +21,15 @@
         text-decoration: none;
         letter-spacing: -2px;
         padding: 1.2rem;
+        opacity: 0;
         @include g.mq(mobile) {
             font-size: g.get_vw(30);
             padding: g.get_vw(20);
+        }
+
+        &.is-show {
+            opacity: 1;
+            transition: opacity 0.5s ease;
         }
     }
 }

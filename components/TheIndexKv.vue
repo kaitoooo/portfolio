@@ -159,7 +159,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-
 import { throttle } from '~/assets/scripts/utils/throttle';
 import { gsap } from 'gsap';
 
@@ -180,7 +179,6 @@ export default Vue.extend({
             renderer: THREE.WebGLRenderer | null;
             clock: THREE.Clock;
             redraw: any;
-            font: any;
             camera: THREE.PerspectiveCamera | null;
             cameraFov: number;
             cameraAspect: number;
@@ -203,6 +201,7 @@ export default Vue.extend({
         ua: string;
         mq: MediaQueryList;
         srcObj: string;
+        srcTexture: string;
         mousePos: {
             x: number;
             y: number;
@@ -226,6 +225,19 @@ export default Vue.extend({
             elms: {
                 canvas: null,
                 loadingBar: null,
+                loadingBattery: null,
+                buttons: null,
+                sns: null,
+                aboutSkills: null,
+                titleSkills: null,
+                textSkills: null,
+                aboutArticles: null,
+                titleArticles: null,
+                textArticles: null,
+                aboutContact: null,
+                titleContact: null,
+                titleTwitter: null,
+                textContact: null,
             },
             elmsAll: {
                 articleLinks: null,
@@ -238,7 +250,6 @@ export default Vue.extend({
                 renderer: null,
                 clock: null,
                 redraw: null,
-                font: null,
                 camera: null,
                 cameraFov: 75,
                 cameraAspect: null,
@@ -261,6 +272,7 @@ export default Vue.extend({
             ua: null,
             mq: null,
             srcObj: null,
+            srcTexture: null,
             mousePos: {
                 x: 0,
                 y: 0,
@@ -277,9 +289,9 @@ export default Vue.extend({
             },
         };
     },
-    // beforeDestroy() {
-    //     this.init();
-    // },
+    beforeDestroy() {
+        this.init();
+    },
     mounted() {
         this.init();
     },
@@ -300,13 +312,14 @@ export default Vue.extend({
                 this.mq.addEventListener('change', this.getLayout.bind(this));
             }
         },
-        getWindowInfo() {
+        getWindowInfo(): void {
             this.winSize = {
                 wd: window.innerWidth,
                 wh: window.innerHeight,
             };
             this.elms = {
                 canvas: document.querySelector('[data-canvas]'),
+                logo: document.querySelector('[data-logo="text"]'),
                 loadingBar: document.querySelector('[data-mv="bar"]'),
                 loadingBattery: document.querySelector('[data-mv="battery"]'),
                 buttons: document.querySelector('[data-mv="buttons"]'),
@@ -336,7 +349,6 @@ export default Vue.extend({
                 renderer: null,
                 clock: null,
                 redraw: null,
-                font: null,
                 camera: null,
                 cameraFov: 75,
                 cameraAspect: window.innerWidth / window.innerHeight,
@@ -359,6 +371,7 @@ export default Vue.extend({
             this.ua = window.navigator.userAgent.toLowerCase();
             this.mq = window.matchMedia('(max-width: 768px)');
             this.srcObj = '/obj/robot.glb';
+            this.srcTexture = '/textures/pink.png';
             this.mousePos = {
                 x: 0,
                 y: 0,
@@ -374,19 +387,19 @@ export default Vue.extend({
                 contact: false,
             };
         },
-        getLayout() {
+        getLayout(): void {
             this.sp = this.mq.matches ? true : false;
         },
-        initScene() {
+        initScene(): void {
             // シーンを作成
             this.three.scene = new this.$THREE.Scene();
         },
-        initCamera() {
+        initCamera(): void {
             // カメラを作成(視野角, スペクト比, near, far)
             this.three.camera = new this.$THREE.PerspectiveCamera(this.three.cameraFov, this.winSize.wd / this.winSize.wh, this.three.cameraAspect, this.three.cameraFar);
             this.three.camera.position.set(0, this.sp ? -2.2 : -1.5, 9);
         },
-        initRenderer() {
+        initRenderer(): void {
             // レンダラーを作成
             this.three.renderer = new this.$THREE.WebGLRenderer({
                 antialias: true,
@@ -401,7 +414,7 @@ export default Vue.extend({
             this.elms.canvas.appendChild(this.three.renderer.domElement); // HTMLにcanvasを追加
             this.three.renderer.outputEncoding = this.$THREE.GammaEncoding; // 出力エンコーディングを定義
         },
-        setLoading() {
+        setLoading(): void {
             const loadingManager = new this.$THREE.LoadingManager(
                 // Loaded
                 () => {
@@ -421,6 +434,7 @@ export default Vue.extend({
 
                         this.elms.buttons.classList.add('is-show');
                         this.elms.sns.classList.add('is-show');
+                        this.elms.logo.classList.add('is-show');
                     }, 1000);
                 },
 
@@ -434,7 +448,7 @@ export default Vue.extend({
             this.loader.gltfLoader = new GLTFLoader(loadingManager);
             this.loader.objTextureLoader = new this.$THREE.TextureLoader(loadingManager);
         },
-        setOverlay() {
+        setOverlay(): void {
             const overlayGeometry = new this.$THREE.PlaneGeometry(2, 2, 1, 1);
             this.overlay.material = new this.$THREE.ShaderMaterial({
                 transparent: true,
@@ -458,12 +472,12 @@ export default Vue.extend({
             const overlay = new this.$THREE.Mesh(overlayGeometry, this.overlay.material);
             this.three.scene.add(overlay);
         },
-        loadTextures() {
+        loadTextures(): void {
             const colorTexturePink = this.loader.objTextureLoader.load('/textures/pink.png');
             this.three.bakedMaterialPink = new this.$THREE.MeshBasicMaterial({ map: colorTexturePink });
             colorTexturePink.flipY = false;
         },
-        setModels() {
+        setModels(): void {
             this.loadTextures();
             this.setOverlay();
             // glTF形式の3Dモデルを読み込む
@@ -484,7 +498,7 @@ export default Vue.extend({
                 this.rendering();
             });
         },
-        rendering() {
+        rendering(): void {
             this.three.redraw.rotation.y += 0.002;
 
             // レンダリングを実行
@@ -492,7 +506,7 @@ export default Vue.extend({
             requestAnimationFrame(this.rendering.bind(this));
             // this.animate(); // アニメーション開始
         },
-        handleEvents() {
+        handleEvents(): void {
             // リサイズイベント登録
             window.addEventListener(
                 'resize',
@@ -504,7 +518,7 @@ export default Vue.extend({
             // マウスイベント登録
             window.addEventListener('pointermove', this.handleMouse.bind(this), false);
         },
-        handleResize() {
+        handleResize(): void {
             // リサイズ処理
             this.winSize = {
                 wd: window.innerWidth,
@@ -522,7 +536,7 @@ export default Vue.extend({
                 this.three.renderer.setPixelRatio(this.dpr);
             }
         },
-        handleMouse(event) {
+        handleMouse(event): void {
             this.mousePos.targetX = (this.halfWd - event.clientX) / this.halfWd;
             this.mousePos.targetY = (this.halfWh - event.clientY) / this.halfWh;
         },
@@ -566,7 +580,7 @@ export default Vue.extend({
             });
             this.three.bakedMaterialPink.color = new this.$THREE.Color('#4b0082');
         },
-        checkFlg() {
+        checkFlg(): void {
             if (this.elms.textSkills.classList.contains('is-flg')) {
                 this.flg.skills = false;
                 gsap.to(this.elms.titleSkills, {
