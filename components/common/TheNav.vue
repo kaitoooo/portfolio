@@ -83,9 +83,6 @@ import Vue from 'vue';
 import { Nav } from '~/assets/scripts/nav';
 
 export default Vue.extend({
-    // beforeDestroy() {
-    //     this.init();
-    // },
     mounted() {
         new Nav();
     },

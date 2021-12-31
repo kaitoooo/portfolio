@@ -24,7 +24,30 @@ import Vue from 'vue';
 import { gsap } from 'gsap';
 
 export default Vue.extend({
+    data(): {
+        elms: {
+            logo: HTMLElement;
+        };
+    } {
+        return {
+            elms: {
+                logo: null,
+            },
+        };
+    },
+    mounted() {
+        this.init();
+    },
     methods: {
+        init() {
+            this.getWindowInfo();
+            this.checkClass();
+        },
+        getWindowInfo() {
+            this.elms = {
+                logo: document.querySelector('[data-logo="text"]'),
+            };
+        },
         linkOver() {
             // hover
             gsap.to('[data-logo="letter"]', {
@@ -40,6 +63,13 @@ export default Vue.extend({
                 ease: 'power4.inOut',
                 letterSpacing: '-2px',
             });
+        },
+        checkClass() {
+            if (!this.elms.logo.classList.contains('is-show') && this.$route.name === 'works') {
+                this.elms.logo.classList.add('is-show');
+            } else if (!this.elms.logo.classList.contains('is-show') && this.$route.name === 'profile') {
+                this.elms.logo.classList.add('is-show');
+            }
         },
     },
 });
