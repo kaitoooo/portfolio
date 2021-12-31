@@ -29,7 +29,7 @@
     </section>
 </template>
 <style lang="scss" scoped>
-@import '~/assets/styles/components/index/_articles';
+// @import '~/assets/styles/components/index/_articles';
 </style>
 
 <script lang="ts">

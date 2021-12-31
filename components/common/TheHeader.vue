@@ -82,5 +82,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import '~/assets/styles/components/common/_header';
+// @import '~/assets/styles/components/common/_header';
 </style>

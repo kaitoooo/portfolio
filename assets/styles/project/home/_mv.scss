@@ -1,0 +1,301 @@
+@use "../../global/global" as g;
+
+.mv {
+    position: relative;
+    background-color: g.$color-black;
+
+    &__canvas {
+        overflow: hidden;
+    }
+
+    &__battery {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 40px;
+        border: 2px solid g.$color-white;
+        box-shadow: 0 0 0 2px g.$color-green;
+        border-radius: 3px;
+        transform: translate(-50%, -50%);
+        @include g.mq(mobile) {
+            width: g.get_vw(200);
+            height: g.get_vw(80);
+        }
+
+        &::after {
+            content: '';
+            width: 5px;
+            height: 8px;
+            border-radius: 0 2px 2px 0;
+            background-color: g.$color-green;
+            position: absolute;
+            top: 50%;
+            right: -8px;
+            transform: translateY(-50%);
+            @include g.mq(mobile) {
+                width: g.get_vw(10);
+                height: g.get_vw(16);
+                right: g.get_vw(-16);
+            }
+        }
+        &.is-end {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+    }
+
+    &__bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 96px;
+        height: 36px;
+        transform: scaleX(0);
+        background-color: g.$color-green;
+        transform-origin: top left;
+        transition: transform 0.5s;
+        border-radius: 3px;
+        @include g.mq(mobile) {
+            width: g.get_vw(194);
+            height: g.get_vw(74);
+        }
+
+        &.is-end {
+            transform: scaleX(100%);
+            transform-origin: 100%;
+            transition: transform 1.5s ease-in-out;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10rem;
+        margin: 0 auto;
+        mix-blend-mode: difference;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 100;
+        @include g.mq(mobile) {
+            flex-wrap: wrap;
+            bottom: g.get_vw(120);
+        }
+
+        &.is-show {
+            opacity: 1;
+            pointer-events: all;
+            transition: opacity 0.5s ease;
+        }
+    }
+
+    &__text {
+        color: g.$color-white;
+        font-size: 3.2rem;
+        font-family: g.$font-en;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin: 0 2rem;
+        transition: font-weight 0.3s ease;
+        @include g.mq(mobile) {
+            width: 27%;
+            font-size: g.get_vw(40);
+            text-align: center;
+            margin: 0 g.get_vw(12) g.get_vw(40);
+        }
+
+        &.is-flg {
+            pointer-events: none;
+            font-weight: 700;
+            color: g.$color-light-green;
+        }
+
+        &:hover {
+            font-weight: 700;
+        }
+    }
+
+    &__about {
+        position: absolute;
+        padding: 3.2rem 2rem;
+        visibility: hidden;
+        @include g.mq(mobile) {
+            padding: g.get_vw(30) g.get_vw(20);
+        }
+
+        &--skills {
+            top: 4rem;
+            left: 3rem;
+            @include g.mq(mobile) {
+                top: g.get_vw(80);
+                left: g.get_vw(10);
+            }
+        }
+
+        &--articles {
+            top: 2rem;
+            right: 8rem;
+            @include g.mq(mobile) {
+                top: g.get_vw(100);
+                left: g.get_vw(10);
+                right: auto;
+            }
+        }
+
+        &--contact {
+            bottom: 8rem;
+            left: 3rem;
+            @include g.mq(mobile) {
+                bottom: g.get_vw(300);
+                left: g.get_vw(10);
+            }
+        }
+    }
+
+    &__title,
+    &__sub-title,
+    &__detail {
+        color: g.$color-white;
+    }
+
+    &__outer-title {
+        overflow: hidden;
+    }
+    &__outer {
+        transform: translate3d(0, 30%, 0);
+        opacity: 0;
+    }
+
+    &__title {
+        font-size: 4rem;
+        font-weight: 100;
+        font-family: g.$font-en;
+        margin: 0 0 2rem;
+        transform: translate3d(0, 70%, 0);
+        opacity: 0;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(40);
+            margin: 0 0 g.get_vw(20);
+        }
+    }
+    &__sub-title {
+        font-size: 2.7rem;
+        font-weight: 100;
+        font-family: g.$font-en;
+        margin: 0 0 1.4rem;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(30);
+            margin: 0 0 g.get_vw(12);
+        }
+    }
+
+    &__detail {
+        font-size: 2rem;
+        font-weight: 100;
+        font-family: g.$font-en;
+        line-height: 1.5;
+        margin: 0 0 2rem;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(25);
+            margin: 0 0 g.get_vw(10);
+        }
+
+        &--jp {
+            font-family: g.$font-jp;
+        }
+
+        &--link {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            transition: font-weight 0.3s ease;
+            margin: 0 0 3rem;
+            @include g.mq(mobile) {
+                margin: 0 0 g.get_vw(10);
+            }
+
+            &:hover {
+                font-weight: 700;
+            }
+        }
+
+        &--icon {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -22px;
+            margin: auto;
+            width: 20px;
+            height: 24px;
+            @include g.mq(mobile) {
+                right: g.get_vw(-37);
+                width: g.get_vw(30);
+                height: g.get_vw(38);
+            }
+        }
+        &--icon-fill {
+            fill: g.$color-light-gray;
+        }
+    }
+
+    &__sns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 4rem;
+        bottom: 9.6rem;
+        margin: 0 auto;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 100;
+        @include g.mq(pc) {
+            bottom: 5rem;
+        }
+        @include g.mq(mobile) {
+            bottom: g.get_vw(30);
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+        }
+
+        &.is-show {
+            opacity: 1;
+            pointer-events: all;
+            transition: opacity 0.5s ease;
+        }
+    }
+
+    &__sns-link {
+        width: 3.1rem;
+        margin: 0 1.6rem;
+        @include g.mq(mobile) {
+            width: g.get_vw(60);
+            margin: 0 g.get_vw(25);
+        }
+
+        &:hover {
+            .mv__twitter-icon,
+            .mv__instagram-icon,
+            .mv__github-icon {
+                fill: g.$color-light-gray;
+            }
+        }
+
+        &--github {
+            width: 4.1rem;
+            @include g.mq(mobile) {
+                width: g.get_vw(80);
+            }
+        }
+    }
+    &__twitter-icon,
+    &__instagram-icon,
+    &__github-icon {
+        fill: g.$color-dark-gray;
+        transition: fill 0.3s ease;
+    }
+}

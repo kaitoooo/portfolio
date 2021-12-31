@@ -41,7 +41,7 @@ export default {
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             { hid: 'canonical', rel: 'canonical', href: envSetting.url },
-            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Suez+One&display=swap' },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;700&display=swap"' },
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap' },
         ],
     },
@@ -56,21 +56,9 @@ export default {
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: ['ress', '@/assets/styles/style.scss'],
-    styleResources: {
-        scss: [
-            '~/assets/styles/modules/_variables.scss',
-            '~/assets/styles/modules/_variables-easing.scss',
-            '~/assets/styles/modules/_mq.scss',
-            '~/assets/styles/modules/_animation.scss',
-            '~/assets/styles/modules/_functions.scss',
-            '~/assets/styles/modules/_transition.scss',
-            '~/assets/styles/components/index/_swiper.scss',
-        ],
-    },
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
-        { src: '~/plugins/swiper', mode: 'client' },
         { src: '~/plugins/vue-scrollto', mode: 'client' },
         { src: '~plugins/three.js', mode: 'client' },
     ],
@@ -91,13 +79,12 @@ export default {
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
         transpile: ['three'],
-
         loaders: {
             scss: {
-                implementation: Sass,
-                // sassOptions: {
-                //     fiber: Fiber,
-                // },
+                implementation: require('sass'),
+                sassOptions: {
+                    fiber: require('fibers'),
+                },
             },
         },
         babel: {

@@ -1,0 +1,94 @@
+@use "../../global/global" as g;
+
+.nav {
+    position: relative;
+
+    &__canvas {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        cursor: pointer;
+        z-index: 101;
+        @include g.mq(mobile) {
+            top: 0;
+            right: 0;
+        }
+
+        &.is-process {
+            pointer-events: none;
+        }
+    }
+
+    &__menu {
+        position: fixed;
+        top: 2.3rem;
+        right: 10.5rem;
+        background-color: g.$color-black;
+        width: 0;
+        z-index: 100;
+        @include g.mq(mobile) {
+            top: g.get_vw(36);
+            right: g.get_vw(180);
+        }
+    }
+
+    &__item {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+    }
+
+    &__link {
+        display: inline-block;
+        color: g.$color-light-gray;
+        font-weight: 100;
+        font-size: 2rem;
+        font-family: g.$font-en;
+        text-decoration: none;
+        padding: 1.2rem;
+        transition: font-weight 0.5s ease;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(35);
+        }
+
+        &:hover {
+            font-weight: 700;
+        }
+    }
+
+    &__sns-link {
+        display: block;
+        width: 30px;
+        margin: 0 8px;
+        @include g.mq(mobile) {
+            width: g.get_vw(40);
+            margin: 0 g.get_vw(13);
+        }
+
+        &:hover {
+            .nav__twitter-icon,
+            .nav__instagram-icon,
+            .nav__github-icon {
+                transform: scale(1.02);
+            }
+        }
+
+        &--github {
+            width: 40px;
+            @include g.mq(mobile) {
+                width: g.get_vw(55);
+            }
+        }
+    }
+    &__twitter-icon,
+    &__instagram-icon,
+    &__github-icon {
+        fill: g.$color-light-gray;
+        transition: 0.5s ease;
+    }
+}

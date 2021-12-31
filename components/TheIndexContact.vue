@@ -31,7 +31,7 @@
     </section>
 </template>
 <style lang="scss" scoped>
-@import '~/assets/styles/components/index/_contact';
+// @import '~/assets/styles/components/index/_contact';
 </style>
 
 <script lang="ts">

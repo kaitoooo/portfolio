@@ -72,7 +72,7 @@
     </section>
 </template>
 <style lang="scss" scoped>
-@import '~/assets/styles/components/index/_intro';
+// @import '~/assets/styles/components/index/_intro';
 </style>
 
 <script lang="ts">

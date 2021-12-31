@@ -1,0 +1,70 @@
+@use "../../global/global" as g;
+.profile-mv {
+    &__img {
+        position: relative;
+        width: 100%;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($color: g.$color-black, $alpha: 0.2);
+        }
+    }
+
+    &__title {
+        position: absolute;
+        bottom: g.get_vw(100);
+        left: g.get_vw(100);
+        color: g.$color-white;
+        font-size: 10rem;
+        font-weight: 100;
+        font-family: g.$font-en;
+        @include g.mq(mobile) {
+            bottom: g.get_vw(20);
+            left: g.get_vw(10);
+            font-size: g.get_vw(50);
+        }
+    }
+    &__outer {
+        transform: translate3d(0, 30%, 0);
+        opacity: 0;
+    }
+    &__scroll {
+        display: inline-block;
+        position: absolute;
+        right: 40px;
+        bottom: 0;
+        padding: 10px 10px 110px;
+        overflow: hidden;
+        color: g.$color-light-gray;
+        font-size: 2rem;
+        font-family: g.$font-en;
+        text-transform: uppercase;
+        writing-mode: vertical-lr;
+        z-index: 2;
+        @include g.mq(mobile) {
+            padding: g.get_vw(20) g.get_vw(20) g.get_vw(170);
+            font-size: g.get_vw(30);
+            right: g.get_vw(10);
+            bottom: g.get_vw(35);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            height: 100px;
+            background: g.$color-light-gray;
+            animation: scroll-animate 2s cubic-bezier(1, 0, 0, 1) infinite;
+            @include g.mq(mobile) {
+                height: g.get_vw(150);
+            }
+        }
+    }
+}

@@ -1,7 +1,9 @@
 export type WorksAll = {
     link: string;
-    pc: string;
-    retina: string;
+    png: string;
+    pngSp: string;
+    webp: string;
+    webpSp: string;
     alt: string;
     width: number;
     height: number;

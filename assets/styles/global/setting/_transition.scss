@@ -1,0 +1,43 @@
+.page-enter-active {
+    transition: all 0.5s ease;
+}
+.page-leave-active {
+    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.page-enter,
+.page-leave-to {
+    transform: translateY(10px);
+    opacity: 0;
+}
+
+//下層ページに入った時の挙動
+.fade-up-enter-active,
+.fade-up-leave-active {
+    transition: 0.5s 0.8s ease;
+}
+.fade-up-enter,
+.fade-up-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+//下層ページに入った時の挙動
+.scale-up-enter-active,
+.scale-up-leave-active {
+    transition: 1.2s ease-out;
+}
+.scale-up-enter,
+.scale-up-leave-to {
+    opacity: 0;
+    transform: scale(1.5);
+}
+
+//ページトップへ戻るボタンの挙動
+.button-enter-active,
+.button-leave-active {
+    transition: opacity 0.3s;
+}
+.button-enter,
+.button-leave-to {
+    opacity: 0;
+}

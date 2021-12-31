@@ -4,7 +4,7 @@
     </footer>
 </template>
 <style lang="scss" scoped>
-@import '~/assets/styles/components/common/_footer';
+// @import '~/assets/styles/components/common/_footer';
 </style>
 
 <script lang="ts">

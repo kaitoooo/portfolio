@@ -1,0 +1,131 @@
+@use "../../global/global" as g;
+
+.profile-about {
+    background-color: g.$color-white;
+    padding: 7rem 0 0;
+    @include g.mq(mobile) {
+        padding: g.get_vw(100) 0 0;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        list-style-type: none;
+    }
+
+    &__item {
+        width: 60%;
+        margin: 0 auto;
+        @include g.mq(mobile) {
+            width: 90%;
+        }
+    }
+    &__theme,
+    &__detail,
+    &__link {
+        color: g.$color-dark-gray;
+        font-weight: 100;
+    }
+    &__theme,
+    &__sub-theme {
+        font-size: 2rem;
+        font-family: g.$font-en;
+        margin: 0 0 1rem;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(30);
+        }
+    }
+    &__sub-theme {
+        display: block;
+    }
+    &__name {
+        color: g.$color-dark-gray;
+        font-size: 3rem;
+        font-family: g.$font-jp;
+        margin: 0 0 10rem;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(40);
+            margin: 0 0 g.get_vw(100);
+        }
+    }
+    &__detail {
+        font-size: 2.8rem;
+        font-family: g.$font-jp;
+        line-height: 1.7;
+        margin: 0 0 10rem;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(40);
+            margin: 0 0 g.get_vw(100);
+        }
+
+        &--en {
+            font-family: g.$font-en;
+        }
+
+        &--jp {
+            font-size: 2.3rem;
+            @include g.mq(mobile) {
+                font-size: g.get_vw(35);
+            }
+        }
+
+        &--first {
+            margin: 0 0 4rem;
+            @include g.mq(mobile) {
+                margin: 0 0 g.get_vw(20);
+            }
+        }
+    }
+    &__link {
+        position: relative;
+        font-size: 2.3rem;
+        font-family: g.$font-jp;
+        line-height: 1.7;
+        margin: 0 0 10rem;
+        text-decoration: none;
+        transition: font-weight 0.5s ease;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(35);
+            margin: 0 0 g.get_vw(20);
+        }
+
+        &:hover {
+            font-weight: 700;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        top: -2px;
+        right: -22px;
+        width: 20px;
+        height: 24px;
+        @include g.mq(mobile) {
+            top: g.get_vw(2);
+            right: g.get_vw(-37);
+            width: g.get_vw(36);
+            height: g.get_vw(43);
+        }
+    }
+    &__icon-fill {
+        fill: g.$color-dark-gray;
+    }
+    &__back {
+        display: block;
+        color: g.$color-dark-gray;
+        font-size: 4rem;
+        font-family: g.$font-en;
+        text-align: center;
+        text-decoration: none;
+        margin: 60px auto 100px;
+        transition: font-weight 0.5s ease;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(40);
+        }
+
+        &:hover {
+            font-weight: 700;
+        }
+    }
+}

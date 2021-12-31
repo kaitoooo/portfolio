@@ -1,0 +1,29 @@
+@use "../../global/global" as g;
+
+.top-logo {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    filter: contrast(20);
+    overflow: hidden;
+    mix-blend-mode: difference;
+    z-index: 100;
+    @include g.mq(mobile) {
+        top: g.get_vw(30);
+        left: g.get_vw(10);
+    }
+
+    &__link {
+        color: g.$color-light-gray;
+        font-weight: 100;
+        font-size: 2rem;
+        font-family: g.$font-en;
+        text-decoration: none;
+        letter-spacing: -2px;
+        padding: 1.2rem;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(30);
+            padding: g.get_vw(20);
+        }
+    }
+}

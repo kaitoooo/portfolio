@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "core-js": "^3.9.1",
+    "fibers": "^5.0.0",
     "imagesloaded": "^4.1.4",
     "nuxt": "^2.15.3"
   },
@@ -34,10 +35,9 @@
     "gsap": "^3.7.0",
     "imports-loader": "^0.8.0",
     "intersection-observer": "^0.12.0",
-    "node-sass": "^4.14.1",
     "prettier": "^2.2.1",
     "ress": "^3.0.0",
-    "sass": "^1.32.8",
+    "sass": "^1.45.1",
     "sass-loader": "^10.1.1",
     "swiper": "^5.4.5",
     "three": "^0.130.1",

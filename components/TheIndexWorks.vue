@@ -155,7 +155,7 @@
     </section>
 </template>
 <style lang="scss" scoped>
-@import '~/assets/styles/components/index/_works';
+// @import '~/assets/styles/components/index/_works';
 </style>
 
 <script lang="ts">
