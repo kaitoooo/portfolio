@@ -28,10 +28,16 @@ export default Vue.extend({
         elms: {
             logo: HTMLElement;
         };
+        elmsAll: {
+            letter: NodeListOf<HTMLElement>;
+        };
     } {
         return {
             elms: {
                 logo: null,
+            },
+            elmsAll: {
+                letter: null,
             },
         };
     },
@@ -47,10 +53,13 @@ export default Vue.extend({
             this.elms = {
                 logo: document.querySelector('[data-logo="text"]'),
             };
+            this.elmsAll = {
+                letter: document.querySelectorAll('[data-logo="letter"]'),
+            };
         },
         linkOver() {
             // hover
-            gsap.to('[data-logo="letter"]', {
+            gsap.to(this.elmsAll.letter, {
                 stagger: 0.05,
                 ease: 'power4.inOut',
                 letterSpacing: '0',
@@ -58,7 +67,7 @@ export default Vue.extend({
         },
         linkLeave() {
             // out
-            gsap.to('[data-logo="letter"]', {
+            gsap.to(this.elmsAll.letter, {
                 stagger: 0.01,
                 ease: 'power4.inOut',
                 letterSpacing: '-2px',
@@ -68,6 +77,8 @@ export default Vue.extend({
             if (!this.elms.logo.classList.contains('is-show') && this.$route.name === 'works') {
                 this.elms.logo.classList.add('is-show');
             } else if (!this.elms.logo.classList.contains('is-show') && this.$route.name === 'profile') {
+                this.elms.logo.classList.add('is-show');
+            } else if (!this.elms.logo.classList.contains('is-show') && this.$route.name === '404') {
                 this.elms.logo.classList.add('is-show');
             }
         },

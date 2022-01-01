@@ -1,0 +1,36 @@
+@use "../../global/global" as g;
+
+.mv {
+    position: relative;
+    background-color: g.$color-black;
+    height: 100vh;
+
+    &__text {
+        color: g.$color-white;
+        font-size: g.get_vw(300);
+        font-family: g.$font-en;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: g.get_vw(60) g.get_vw(10);
+        @include g.mq(mobile) {
+            font-size: g.get_vw(200);
+            margin: g.get_vw(40) 0;
+        }
+    }
+    &__link {
+        display: block;
+        color: g.$color-white;
+        font-size: g.get_vw(100);
+        font-family: g.$font-en;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+        transition: font-weight 0.3s ease;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(60);
+        }
+        &:hover {
+            font-weight: 700;
+        }
+    }
+}

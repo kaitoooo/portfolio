@@ -1,15 +1,15 @@
 <template>
     <div class="container">
-        <TheIndexKv />
+        <TheIndexMv />
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import TheIndexKv from '~/components/TheIndexKv.vue';
+import TheIndexMv from '~/components/TheIndexMv.vue';
 
 export default Vue.extend({
-    components: { TheIndexKv },
+    components: { TheIndexMv },
     mounted() {
         document.title = 'Kaito Takase Portfolio';
     },

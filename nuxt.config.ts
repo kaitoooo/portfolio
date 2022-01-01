@@ -41,7 +41,6 @@ export default {
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             { hid: 'canonical', rel: 'canonical', href: envSetting.url },
-            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;700&display=swap"' },
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap' },
         ],
     },

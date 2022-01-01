@@ -14,7 +14,6 @@
   "dependencies": {
     "core-js": "^3.9.1",
     "fibers": "^5.0.0",
-    "imagesloaded": "^4.1.4",
     "nuxt": "^2.15.3"
   },
   "devDependencies": {
@@ -39,9 +38,7 @@
     "ress": "^3.0.0",
     "sass": "^1.45.1",
     "sass-loader": "^10.1.1",
-    "swiper": "^5.4.5",
     "three": "^0.130.1",
-    "vue-awesome-swiper": "^4.1.1",
     "vue-scrollto": "^2.20.0"
   },
   "browserslist": [

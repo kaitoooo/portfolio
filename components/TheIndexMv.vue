@@ -1,17 +1,17 @@
 <template>
     <section class="mv">
-        <div class="mv__battery" data-mv="battery">
-            <div class="mv__bar" data-mv="bar"></div>
+        <div class="mv__battery" ref="battery" data-mv="battery">
+            <div class="mv__bar" ref="bar"></div>
         </div>
-        <div class="mv__canvas" data-canvas></div>
-        <div class="mv__buttons" data-mv="buttons">
-            <nuxt-link to="/profile" class="mv__text" @mouseover.native="actionProfile">Profile</nuxt-link>
-            <nuxt-link to="/works" class="mv__text" @mouseover.native="actionWorks">Works</nuxt-link>
-            <button class="mv__text" @mouseover="actionSkills" @click="showSkills" :class="{ 'is-flg': flg.skills }" data-text="skills">Skills</button>
-            <button class="mv__text" @mouseover="actionArticles" @click="showArticles" :class="{ 'is-flg': flg.articles }" data-text="articles">Articles</button>
-            <button class="mv__text" @mouseover="actionContact" @click="showContact" :class="{ 'is-flg': flg.contact }" data-text="contact">Contact</button>
+        <div class="mv__canvas" ref="canvas"></div>
+        <div class="mv__buttons" ref="buttons">
+            <nuxt-link to="/profile" class="mv__text" @mouseover.native="checkCategoryHover" data-button data-button-category="profile">Profile</nuxt-link>
+            <nuxt-link to="/works" class="mv__text" @mouseover.native="checkCategoryHover" data-button data-button-category="works">Works</nuxt-link>
+            <button class="mv__text" @mouseover="checkCategoryHover" @click="checkCategoryClick" :class="{ 'is-flg': flg.skills }" ref="clickSkills" data-button data-button-category="skills">Skills</button>
+            <button class="mv__text" @mouseover="checkCategoryHover" @click="checkCategoryClick" :class="{ 'is-flg': flg.articles }" ref="clickArticles" data-button data-button-category="articles">Articles</button>
+            <button class="mv__text" @mouseover="checkCategoryHover" @click="checkCategoryClick" :class="{ 'is-flg': flg.contact }" ref="clickContact" data-button data-button-category="contact">Contact</button>
         </div>
-        <div class="mv__sns" data-mv="sns">
+        <div class="mv__sns" ref="sns">
             <a href="https://twitter.com/hitoeeeeeeee/" target="_blank" rel="noopener noreferrer" class="mv__sns-link">
                 <svg enable-background="new 0 0 128 128" id="Social_Icons" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g>
@@ -64,9 +64,9 @@
             </a>
         </div>
         <!-- Skills -->
-        <div class="mv__about mv__about--skills" data-mv="skills">
+        <div class="mv__about mv__about--skills" ref="aboutSkills">
             <div class="mv__outer-title">
-                <h2 class="mv__title" data-title="skills">Skills</h2>
+                <h2 class="mv__title" ref="titleSkills">Skills</h2>
             </div>
             <div class="mv__outer" data-title="skillsWeb">
                 <h2 class="mv__sub-title">Web</h2>
@@ -81,9 +81,9 @@
             </div>
         </div>
         <!-- Articles -->
-        <div class="mv__about mv__about--articles" data-mv="articles">
+        <div class="mv__about mv__about--articles" ref="aboutArticles">
             <div class="mv__outer-title">
-                <h2 class="mv__title" data-title="articles">Articles</h2>
+                <h2 class="mv__title" ref="titleArticles">Articles</h2>
             </div>
             <div class="mv__outer" data-title="articleLinks">
                 <p class="mv__sub-title">note</p>
@@ -134,11 +134,11 @@
             </div>
         </div>
         <!-- Contact -->
-        <div class="mv__about mv__about--contact" data-mv="contact">
+        <div class="mv__about mv__about--contact" ref="aboutContact">
             <div class="mv__outer-title">
-                <h2 class="mv__title" data-title="contact">Contact</h2>
+                <h2 class="mv__title" ref="titleContact">Contact</h2>
             </div>
-            <div class="mv__outer" data-title="twitter">
+            <div class="mv__outer" ref="titleTwitter">
                 <h2 class="mv__detail mv__detail--jp">お問い合わせ・ご連絡はこちらからDMをお願いします。</h2>
                 <a href="https://twitter.com/hitoeeeeeeee" target="_blank" rel="noopener noreferrer" class="mv__detail mv__detail--link">
                     https://twitter.com/hitoeeeeeeee/
@@ -177,7 +177,6 @@ export default Vue.extend({
         three: {
             scene: THREE.Scene;
             renderer: THREE.WebGLRenderer | null;
-            clock: THREE.Clock;
             redraw: any;
             camera: THREE.PerspectiveCamera | null;
             cameraFov: number;
@@ -186,8 +185,6 @@ export default Vue.extend({
         };
         texture: {
             bakedMaterialPink: THREE.MeshBasicMaterial | null;
-            bakedMaterialGreen: THREE.MeshBasicMaterial | null;
-            bakedMaterialBlue: THREE.MeshBasicMaterial | null;
             map: null;
         };
         overlay: {
@@ -202,14 +199,6 @@ export default Vue.extend({
         mq: MediaQueryList;
         srcObj: string;
         srcTexture: string;
-        mousePos: {
-            x: number;
-            y: number;
-            targetX: number;
-            targetY: number;
-            moveX: number;
-            moveY: number;
-        };
         flg: {
             loaded: boolean;
             skills: boolean;
@@ -223,21 +212,7 @@ export default Vue.extend({
                 wh: null,
             },
             elms: {
-                canvas: null,
-                loadingBar: null,
-                loadingBattery: null,
-                buttons: null,
-                sns: null,
-                aboutSkills: null,
-                titleSkills: null,
-                textSkills: null,
-                aboutArticles: null,
-                titleArticles: null,
-                textArticles: null,
-                aboutContact: null,
-                titleContact: null,
-                titleTwitter: null,
-                textContact: null,
+                logo: null,
             },
             elmsAll: {
                 articleLinks: null,
@@ -248,7 +223,6 @@ export default Vue.extend({
             three: {
                 scene: null,
                 renderer: null,
-                clock: null,
                 redraw: null,
                 camera: null,
                 cameraFov: 75,
@@ -257,8 +231,6 @@ export default Vue.extend({
             },
             texture: {
                 bakedMaterialPink: null,
-                bakedMaterialGreen: null,
-                bakedMaterialBlue: null,
                 map: null,
             },
             overlay: {
@@ -273,14 +245,6 @@ export default Vue.extend({
             mq: null,
             srcObj: null,
             srcTexture: null,
-            mousePos: {
-                x: 0,
-                y: 0,
-                targetX: 0,
-                targetY: 0,
-                moveX: 0,
-                moveY: 0,
-            },
             flg: {
                 loaded: false,
                 skills: false,
@@ -318,25 +282,7 @@ export default Vue.extend({
                 wh: window.innerHeight,
             };
             this.elms = {
-                canvas: document.querySelector('[data-canvas]'),
                 logo: document.querySelector('[data-logo="text"]'),
-                loadingBar: document.querySelector('[data-mv="bar"]'),
-                loadingBattery: document.querySelector('[data-mv="battery"]'),
-                buttons: document.querySelector('[data-mv="buttons"]'),
-                sns: document.querySelector('[data-mv="sns"]'),
-
-                aboutSkills: document.querySelector('[data-mv="skills"]'),
-                titleSkills: document.querySelector('[data-title="skills"]'),
-                textSkills: document.querySelector('[data-text="skills"]'),
-
-                aboutArticles: document.querySelector('[data-mv="articles"]'),
-                titleArticles: document.querySelector('[data-title="articles"]'),
-                textArticles: document.querySelector('[data-text="articles"]'),
-
-                aboutContact: document.querySelector('[data-mv="contact"]'),
-                titleContact: document.querySelector('[data-title="contact"]'),
-                titleTwitter: document.querySelector('[data-title="twitter"]'),
-                textContact: document.querySelector('[data-text="contact"]'),
             };
             this.elmsAll = {
                 articleLinks: document.querySelectorAll('[data-title="articleLinks"]'),
@@ -347,7 +293,6 @@ export default Vue.extend({
             this.three = {
                 scene: null,
                 renderer: null,
-                clock: null,
                 redraw: null,
                 camera: null,
                 cameraFov: 75,
@@ -356,8 +301,6 @@ export default Vue.extend({
             };
             this.texture = {
                 bakedMaterialPink: null,
-                bakedMaterialGreen: null,
-                bakedMaterialBlue: null,
                 map: null,
             };
             this.overlay = {
@@ -372,14 +315,6 @@ export default Vue.extend({
             this.mq = window.matchMedia('(max-width: 768px)');
             this.srcObj = '/obj/robot.glb';
             this.srcTexture = '/textures/pink.png';
-            this.mousePos = {
-                x: 0,
-                y: 0,
-                targetX: 0,
-                targetY: 0,
-                moveX: 0.004,
-                moveY: 0.003,
-            };
             this.flg = {
                 loaded: false,
                 skills: false,
@@ -405,13 +340,12 @@ export default Vue.extend({
                 antialias: true,
                 alpha: true, //背景色を設定しないとき、背景を透明にする
             });
-            // this.three.renderer.setClearColor(0xffffff); //背景色
             this.three.renderer.setPixelRatio(this.dpr); // retina対応
             this.three.renderer.setSize(this.winSize.wd, this.winSize.wh); // 画面サイズをセット
             this.three.renderer.physicallyCorrectLights = true;
             this.three.renderer.shadowMap.enabled = true; // シャドウを有効にする
             this.three.renderer.shadowMap.type = this.$THREE.PCFSoftShadowMap; // PCFShadowMapの結果から更に隣り合う影との間を線形補間して描画する
-            this.elms.canvas.appendChild(this.three.renderer.domElement); // HTMLにcanvasを追加
+            this.$refs.canvas.appendChild(this.three.renderer.domElement); // HTMLにcanvasを追加
             this.three.renderer.outputEncoding = this.$THREE.GammaEncoding; // 出力エンコーディングを定義
         },
         setLoading(): void {
@@ -428,21 +362,20 @@ export default Vue.extend({
                         });
 
                         // loadingBarElementの更新
-                        this.elms.loadingBar.classList.add('is-end');
-                        this.elms.loadingBar.style.transform = '';
-                        this.elms.loadingBattery.classList.add('is-end');
-
-                        this.elms.buttons.classList.add('is-show');
-                        this.elms.sns.classList.add('is-show');
+                        this.$refs.bar.classList.add('is-end');
+                        this.$refs.bar.style.transform = '';
+                        this.$refs.battery.classList.add('is-end');
+                        this.$refs.buttons.classList.add('is-show');
+                        this.$refs.sns.classList.add('is-show');
                         this.elms.logo.classList.add('is-show');
                     }, 1000);
                 },
 
                 // Progress
                 (itemUrl, itemsLoaded, itemsTotal) => {
-                    // 進行状況を計算し、this.elms.loadingBarを更新する
+                    // 進行状況を計算し、this.$refs.barを更新する
                     const progressRatio = itemsLoaded / itemsTotal;
-                    this.elms.loadingBar.style.transform = `scaleX(${progressRatio})`;
+                    this.$refs.bar.style.transform = `scaleX(${progressRatio})`;
                 }
             );
             this.loader.gltfLoader = new GLTFLoader(loadingManager);
@@ -473,7 +406,7 @@ export default Vue.extend({
             this.three.scene.add(overlay);
         },
         loadTextures(): void {
-            const colorTexturePink = this.loader.objTextureLoader.load('/textures/pink.png');
+            const colorTexturePink = this.loader.objTextureLoader.load(this.srcTexture);
             this.three.bakedMaterialPink = new this.$THREE.MeshBasicMaterial({ map: colorTexturePink });
             colorTexturePink.flipY = false;
         },
@@ -486,10 +419,11 @@ export default Vue.extend({
                 this.three.redraw = obj.scene;
 
                 obj.scene.traverse((child: any) => {
+                    // マテリアルを設定
                     child.material = this.three.bakedMaterialPink;
+                    // 3Dのサイズ設定
                     child.scale.set(this.sp ? 1 : 1.2, this.sp ? 1 : 1.2, this.sp ? 1 : 1.2);
                 });
-                // 3Dのサイズ設定
 
                 // シーンに3Dモデルを追加
                 this.three.scene.add(obj.scene);
@@ -504,7 +438,6 @@ export default Vue.extend({
             // レンダリングを実行
             this.three.renderer.render(this.three.scene, this.three.camera);
             requestAnimationFrame(this.rendering.bind(this));
-            // this.animate(); // アニメーション開始
         },
         handleEvents(): void {
             // リサイズイベント登録
@@ -515,8 +448,6 @@ export default Vue.extend({
                 }, 100),
                 false
             );
-            // マウスイベント登録
-            window.addEventListener('pointermove', this.handleMouse.bind(this), false);
         },
         handleResize(): void {
             // リサイズ処理
@@ -536,9 +467,101 @@ export default Vue.extend({
                 this.three.renderer.setPixelRatio(this.dpr);
             }
         },
-        handleMouse(event): void {
-            this.mousePos.targetX = (this.halfWd - event.clientX) / this.halfWd;
-            this.mousePos.targetY = (this.halfWh - event.clientY) / this.halfWh;
+        checkCategoryHover(e) {
+            const type = e.currentTarget.getAttribute('data-button-category');
+            if (type) {
+                switch (type) {
+                    case 'profile':
+                        this.actionProfile();
+                        break;
+                    case 'works':
+                        this.actionWorks();
+                        break;
+                    case 'skills':
+                        this.actionSkills();
+                        break;
+                    case 'articles':
+                        this.actionArticles();
+                        break;
+                    case 'contact':
+                        this.actionContact();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        },
+        checkCategoryClick(e) {
+            const type = e.currentTarget.getAttribute('data-button-category');
+            if (type) {
+                switch (type) {
+                    case 'skills':
+                        this.showSkills();
+                        break;
+                    case 'articles':
+                        this.showArticles();
+                        break;
+                    case 'contact':
+                        this.showContact();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        },
+        checkFlg(): void {
+            if (this.$refs.clickSkills.classList.contains('is-flg')) {
+                this.flg.skills = false;
+                gsap.to(this.$refs.titleSkills, {
+                    duration: 0.3,
+                    y: '70%',
+                    opacity: 0,
+                });
+                gsap.to(this.elmsAll.skillsWeb, {
+                    duration: 0.3,
+                    y: '30%',
+                    opacity: 0,
+                });
+                gsap.to(this.$refs.aboutSkills, {
+                    delay: 0.4,
+                    duration: 0,
+                    visibility: 'hidden',
+                });
+            } else if (this.$refs.clickArticles.classList.contains('is-flg')) {
+                this.flg.articles = false;
+                gsap.to(this.$refs.titleArticles, {
+                    duration: 0.3,
+                    y: '70%',
+                    opacity: 0,
+                });
+                gsap.to(this.elmsAll.articleLinks, {
+                    duration: 0.3,
+                    y: '30%',
+                    opacity: 0,
+                });
+                gsap.to(this.$refs.aboutArticles, {
+                    delay: 0.4,
+                    duration: 0,
+                    visibility: 'hidden',
+                });
+            } else if (this.$refs.clickContact.classList.contains('is-flg')) {
+                this.flg.contact = false;
+                gsap.to(this.$refs.titleContact, {
+                    duration: 1,
+                    opacity: 0,
+                    y: '70%',
+                });
+                gsap.to(this.$refs.titleTwitter, {
+                    duration: 1,
+                    opacity: 0,
+                    y: '30%',
+                });
+                gsap.to(this.$refs.aboutContact, {
+                    delay: 0.4,
+                    duration: 0,
+                    visibility: 'hidden',
+                });
+            }
         },
         actionProfile(): void {
             gsap.to(this.three.redraw.rotation, {
@@ -580,60 +603,6 @@ export default Vue.extend({
             });
             this.three.bakedMaterialPink.color = new this.$THREE.Color('#4b0082');
         },
-        checkFlg(): void {
-            if (this.elms.textSkills.classList.contains('is-flg')) {
-                this.flg.skills = false;
-                gsap.to(this.elms.titleSkills, {
-                    duration: 0.3,
-                    y: '70%',
-                    opacity: 0,
-                });
-                gsap.to(this.elmsAll.skillsWeb, {
-                    duration: 0.3,
-                    y: '30%',
-                    opacity: 0,
-                });
-                gsap.to(this.elms.aboutSkills, {
-                    delay: 0.4,
-                    duration: 0,
-                    visibility: 'hidden',
-                });
-            } else if (this.elms.textArticles.classList.contains('is-flg')) {
-                this.flg.articles = false;
-                gsap.to(this.elms.titleArticles, {
-                    duration: 0.3,
-                    y: '70%',
-                    opacity: 0,
-                });
-                gsap.to(this.elmsAll.articleLinks, {
-                    duration: 0.3,
-                    y: '30%',
-                    opacity: 0,
-                });
-                gsap.to(this.elms.aboutArticles, {
-                    delay: 0.4,
-                    duration: 0,
-                    visibility: 'hidden',
-                });
-            } else if (this.elms.textContact.classList.contains('is-flg')) {
-                this.flg.contact = false;
-                gsap.to(this.elms.titleContact, {
-                    duration: 1,
-                    opacity: 0,
-                    y: '70%',
-                });
-                gsap.to(this.elms.titleTwitter, {
-                    duration: 1,
-                    opacity: 0,
-                    y: '30%',
-                });
-                gsap.to(this.elms.aboutContact, {
-                    delay: 0.4,
-                    duration: 0,
-                    visibility: 'hidden',
-                });
-            }
-        },
         showSkills(): void {
             this.checkFlg();
             this.flg.skills = true;
@@ -643,12 +612,12 @@ export default Vue.extend({
                 z: 5,
                 y: 0.7,
             });
-            gsap.to(this.elms.aboutSkills, {
+            gsap.to(this.$refs.aboutSkills, {
                 duration: 1.2,
                 ease: 'power4.inOut',
                 visibility: 'visible',
             });
-            gsap.to(this.elms.titleSkills, {
+            gsap.to(this.$refs.titleSkills, {
                 delay: 0.3,
                 duration: 1,
                 ease: 'power2.ease',
@@ -672,12 +641,12 @@ export default Vue.extend({
                 z: 6,
                 y: -2.3,
             });
-            gsap.to(this.elms.aboutArticles, {
+            gsap.to(this.$refs.aboutArticles, {
                 duration: 1.2,
                 ease: 'power4.inOut',
                 visibility: 'visible',
             });
-            gsap.to(this.elms.titleArticles, {
+            gsap.to(this.$refs.titleArticles, {
                 delay: 0.3,
                 duration: 1,
                 ease: 'power2.ease',
@@ -701,19 +670,19 @@ export default Vue.extend({
                 z: 7,
                 y: -4,
             });
-            gsap.to(this.elms.aboutContact, {
+            gsap.to(this.$refs.aboutContact, {
                 duration: 1.2,
                 ease: 'power4.inOut',
                 visibility: 'visible',
             });
-            gsap.to(this.elms.titleContact, {
+            gsap.to(this.$refs.titleContact, {
                 delay: 0.3,
                 duration: 1,
                 ease: 'power2.ease',
                 y: 0,
                 opacity: 1,
             });
-            gsap.to(this.elms.titleTwitter, {
+            gsap.to(this.$refs.titleTwitter, {
                 delay: 0.7,
                 duration: 1,
                 ease: 'power2.ease',
