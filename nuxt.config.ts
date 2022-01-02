@@ -60,6 +60,7 @@ export default {
     plugins: [
         { src: '~/plugins/vue-scrollto', mode: 'client' },
         { src: '~plugins/three.js', mode: 'client' },
+        { src: '~/plugins/routerOption.ts', mode: 'client' },
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

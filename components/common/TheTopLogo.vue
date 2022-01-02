@@ -1,6 +1,6 @@
 <template>
     <section class="top-logo">
-        <nuxt-link to="/" class="top-logo__link" @mouseover.native="linkOver" @mouseleave.native="linkLeave" data-logo="text">
+        <nuxt-link to="/" class="top-logo__link" :class="{ 'is-show': flgLogo }" @mouseover.native="linkOver" @mouseleave.native="linkLeave" data-logo="text">
             <span class="top-logo__letter" data-logo="letter">T</span>
             <span class="top-logo__letter" data-logo="letter">a</span>
             <span class="top-logo__letter" data-logo="letter">k</span>
@@ -44,10 +44,14 @@ export default Vue.extend({
     mounted() {
         this.init();
     },
+    computed: {
+        flgLogo(): boolean {
+            return this.$store.getters['flgLogo'];
+        },
+    },
     methods: {
         init() {
             this.getWindowInfo();
-            this.checkClass();
         },
         getWindowInfo() {
             this.elms = {
@@ -72,15 +76,6 @@ export default Vue.extend({
                 ease: 'power4.inOut',
                 letterSpacing: '-2px',
             });
-        },
-        checkClass() {
-            if (!this.elms.logo.classList.contains('is-show') && this.$route.name === 'works') {
-                this.elms.logo.classList.add('is-show');
-            } else if (!this.elms.logo.classList.contains('is-show') && this.$route.name === 'profile') {
-                this.elms.logo.classList.add('is-show');
-            } else if (!this.elms.logo.classList.contains('is-show') && this.$route.name === '404') {
-                this.elms.logo.classList.add('is-show');
-            }
         },
     },
 });
