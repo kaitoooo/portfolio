@@ -41,8 +41,8 @@
                 <p class="profile-about__theme">Skills</p>
                 <p class="profile-about__detail profile-about__detail--en profile-about__detail--first">
                     <span class="profile-about__sub-theme">Web</span>
-                    HTML / CSS / JavaScript(Nuxt.js, Three.js) / Typescript<br />
-                    PHP ( WordPress) / GCP
+                    HTML / CSS / JavaScript(Nuxt.js, React.js, Three.js) <br />
+                    Typescript / PHP ( WordPress) / GCP
                 </p>
                 <p class="profile-about__detail profile-about__detail--en">
                     <span class="profile-about__sub-theme">3D Modeling</span>
@@ -70,7 +70,7 @@
                         </span>
                     </a>
                     <br />
-                    <a href="https://zenn.dev/kaito_takase/" target="_blank" rel="noopener noreferrer" class="profile-about__link">
+                    <a href="https://qiita.com/kaito_takase/items/4b381799d76d4101278c" target="_blank" rel="noopener noreferrer" class="profile-about__link">
                         https://qiita.com/kaito_takase/
                         <span class="profile-about__icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="profile-about__icon-fill">
