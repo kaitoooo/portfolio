@@ -31,6 +31,18 @@ export default Vue.extend({
             scroll: 0,
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/3d-balls/',
+                    png: '3d-balls.png',
+                    pngSp: '3d-balls.png',
+                    webp: '3d-balls.webp',
+                    webpSp: '3d-balls.webp',
+                    alt: '3D Demo Balls',
+                    width: 1341,
+                    height: 733,
+                    title: '3D Demo Balls',
+                    day: '2022 / 3 / 29',
+                },
+                {
                     link: 'https://kaito-takase.dev/reflexes-game/',
                     png: 'reflexes-game.png',
                     pngSp: 'reflexes-game.png',
