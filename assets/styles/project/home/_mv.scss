@@ -3,10 +3,7 @@
 .mv {
     position: relative;
     background-color: g.$color-black;
-
-    &__canvas {
-        overflow: hidden;
-    }
+    overflow: hidden;
 
     &__battery {
         position: absolute;
@@ -68,49 +65,48 @@
         }
     }
 
+    &__wrapper {
+        overflow: hidden;
+        display: table;
+        @include g.mq(mobile) {
+            margin-bottom: g.get_vw(15);
+        }
+    }
+
     &__buttons {
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;
         position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 10rem;
-        margin: 0 auto;
-        mix-blend-mode: difference;
-        opacity: 0;
-        pointer-events: none;
-        z-index: 100;
+        left: 3rem;
+        // top: g.get_vw(70);
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: g.get_vw(500);
+        height: g.get_vw(900);
+        text-align: left;
+        z-index: map-get(g.$z, 'buttons');
         @include g.mq(mobile) {
-            flex-wrap: wrap;
-            bottom: g.get_vw(120);
-        }
-
-        &.is-show {
-            opacity: 1;
-            pointer-events: all;
-            transition: opacity 0.5s ease;
+            left: g.get_vw(30);
+            top: g.get_vw(110);
+            bottom: auto;
+            width: g.get_vw(280);
+            height: auto;
+            margin: 0;
         }
     }
 
     &__text {
+        display: block;
         color: g.$color-white;
-        font-size: 3.2rem;
+        font-size: g.get_vw(190);
         font-family: g.$font-en;
         text-transform: uppercase;
         text-decoration: none;
-        margin: 0 2rem;
         transition: font-weight 0.3s ease;
+        transform: translate3d(0, 110%, 0) rotate(7deg);
         @include g.mq(mobile) {
-            width: 27%;
-            font-size: g.get_vw(40);
-            text-align: center;
-            margin: 0 g.get_vw(12) g.get_vw(40);
-        }
-
-        &.is-flg {
-            pointer-events: none;
-            font-weight: 700;
-            color: g.$color-light-green;
+            font-size: g.get_vw(50);
         }
 
         &:hover {
@@ -122,6 +118,7 @@
         position: absolute;
         padding: 3.2rem 2rem;
         visibility: hidden;
+        z-index: map-get(g.$z, 'detail');
         @include g.mq(mobile) {
             padding: g.get_vw(30) g.get_vw(20);
         }
@@ -136,17 +133,17 @@
         }
 
         &--articles {
-            top: 2rem;
-            right: 8rem;
+            top: 4rem;
+            left: 3rem;
             @include g.mq(mobile) {
-                top: g.get_vw(100);
+                top: g.get_vw(90);
                 left: g.get_vw(10);
                 right: auto;
             }
         }
 
         &--contact {
-            bottom: 8rem;
+            top: 4rem;
             left: 3rem;
             @include g.mq(mobile) {
                 bottom: g.get_vw(300);
@@ -197,10 +194,12 @@
         font-weight: 100;
         font-family: g.$font-en;
         line-height: 1.5;
-        margin: 0 0 2rem;
+        margin-bottom: 2rem;
+        text-decoration: none;
+        display: block;
         @include g.mq(mobile) {
             font-size: g.get_vw(25);
-            margin: 0 0 g.get_vw(10);
+            margin-bottom: g.get_vw(10);
         }
 
         &--jp {
@@ -212,9 +211,9 @@
             display: inline-block;
             text-decoration: none;
             transition: font-weight 0.3s ease;
-            margin: 0 0 3rem;
+            margin-bottom: 3rem;
             @include g.mq(mobile) {
-                margin: 0 0 g.get_vw(10);
+                margin-bottom: g.get_vw(20);
             }
 
             &:hover {
@@ -241,6 +240,50 @@
         }
     }
 
+    &__link {
+        display: block;
+        position: relative;
+        transition: filter 0.4s g.$easeOutSine;
+        font-size: 3rem;
+        font-weight: 100;
+        font-family: g.$font-en;
+        color: g.$color-white;
+        margin: 0 0 0.8rem;
+        text-decoration: none;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(35);
+            margin: 0;
+        }
+        &:hover {
+            .mv__arrow {
+                animation: arrow-to-right 0.6s g.$easeOutSine 0s forwards;
+            }
+        }
+    }
+
+    &__arrow {
+        position: absolute;
+        bottom: -10px;
+        @include g.mq(mobile) {
+            bottom: g.get_vw(-14);
+        }
+
+        &-wrap {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            width: 2rem;
+            height: 3rem;
+            @include g.mq(mobile) {
+                height: g.get_vw(50);
+            }
+        }
+    }
+
+    &__path {
+        fill: g.$color-white;
+    }
+
     &__sns {
         display: flex;
         justify-content: center;
@@ -251,15 +294,15 @@
         margin: 0 auto;
         opacity: 0;
         pointer-events: none;
-        z-index: 100;
+        z-index: map-get(g.$z, 'sns');
         @include g.mq(pc) {
             bottom: 5rem;
         }
         @include g.mq(mobile) {
             bottom: g.get_vw(30);
-            right: 0;
-            left: 0;
-            margin: 0 auto;
+            left: g.get_vw(30);
+            margin: 0;
+            justify-content: flex-start;
         }
 
         &.is-show {
