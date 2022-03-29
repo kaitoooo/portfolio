@@ -1,15 +1,25 @@
 <template>
     <section class="mv">
-        <div class="mv__battery" ref="battery" data-mv="battery">
+        <div class="mv__battery" ref="battery">
             <div class="mv__bar" ref="bar"></div>
         </div>
         <div class="mv__canvas" ref="canvas"></div>
         <div class="mv__buttons" ref="buttons">
-            <nuxt-link to="/profile" class="mv__text" @mouseover.native="checkCategoryHover" data-button data-button-category="profile">Profile</nuxt-link>
-            <nuxt-link to="/works" class="mv__text" @mouseover.native="checkCategoryHover" data-button data-button-category="works">Works</nuxt-link>
-            <button class="mv__text" @mouseover="checkCategoryHover" @click="checkCategoryClick" :class="{ 'is-flg': flg.skills }" ref="clickSkills" data-button data-button-category="skills">Skills</button>
-            <button class="mv__text" @mouseover="checkCategoryHover" @click="checkCategoryClick" :class="{ 'is-flg': flg.articles }" ref="clickArticles" data-button data-button-category="articles">Articles</button>
-            <button class="mv__text" @mouseover="checkCategoryHover" @click="checkCategoryClick" :class="{ 'is-flg': flg.contact }" ref="clickContact" data-button data-button-category="contact">Contact</button>
+            <div class="mv__wrapper">
+                <button class="mv__text" @mouseover="actionSkills" @click="showSkills" :class="{ 'is-flg': flg.skills }" ref="clickSkills" data-buttons>Skills</button>
+            </div>
+            <div class="mv__wrapper">
+                <nuxt-link to="/works" class="mv__text" @mouseover.native="actionWorks" data-buttons>Works</nuxt-link>
+            </div>
+            <div class="mv__wrapper">
+                <button class="mv__text" @mouseover="actionArticles" @click="showArticles" :class="{ 'is-flg': flg.articles }" ref="clickArticles" data-buttons>Articles</button>
+            </div>
+            <div class="mv__wrapper">
+                <nuxt-link to="/profile" class="mv__text" @mouseover.native="actionProfile" data-buttons>Profile</nuxt-link>
+            </div>
+            <div class="mv__wrapper">
+                <button class="mv__text" @mouseover="actionContact" @click="showContact" :class="{ 'is-flg': flg.contact }" ref="clickContact" data-buttons>Contact</button>
+            </div>
         </div>
         <div class="mv__sns" ref="sns">
             <a href="https://twitter.com/hitoeeeeeeee/" target="_blank" rel="noopener noreferrer" class="mv__sns-link">
@@ -71,13 +81,35 @@
             <div class="mv__outer" data-title="skillsWeb">
                 <h2 class="mv__sub-title">Web</h2>
                 <p class="mv__detail">
-                    HTML / CSS / JavaScript(Nuxt.js, Three.js) / Typescript / <br class="pc-only" />
-                    PHP ( WordPress) / GCP
+                    HTML / CSS / JavaScript(Nuxt.js, React.js / Three.js) / <br class="pc-only" />
+                    Typescript / PHP ( WordPress) / GCP
                 </p>
             </div>
             <div class="mv__outer" data-title="skillsWeb">
                 <h2 class="mv__sub-title">3D Modeling</h2>
                 <p class="mv__detail">Blender / Rhinoceros / Unity</p>
+            </div>
+            <div class="mv__outer" data-title="skillsWeb">
+                <nuxt-link to="/works" class="mv__link">
+                    Works
+                    <TheHomeArrow />
+                </nuxt-link>
+                <button class="mv__link" @click="showArticles" :class="{ 'is-flg': flg.articles }" ref="clickArticles">
+                    Articles
+                    <TheHomeArrow />
+                </button>
+                <nuxt-link to="/profile" class="mv__link">
+                    Profile
+                    <TheHomeArrow />
+                </nuxt-link>
+                <button class="mv__link" @click="showContact" :class="{ 'is-flg': flg.contact }" ref="clickContact">
+                    Contact
+                    <TheHomeArrow />
+                </button>
+                <button class="mv__link" @click="resetAll" ref="clickReset">
+                    Reset
+                    <TheHomeArrow />
+                </button>
             </div>
         </div>
         <!-- Articles -->
@@ -111,7 +143,7 @@
             <br />
             <div class="mv__outer" data-title="articleLinks">
                 <p class="mv__sub-title">Qiita</p>
-                <a href="https://zenn.dev/kaito_takase/" target="_blank" rel="noopener noreferrer" class="mv__detail mv__detail--link">
+                <a href="https://qiita.com/kaito_takase/items/4b381799d76d4101278c" target="_blank" rel="noopener noreferrer" class="mv__detail mv__detail--link">
                     https://qiita.com/kaito_takase/
                     <span class="mv__detail--icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="mv__detail--icon-fill">
@@ -132,6 +164,29 @@
                     </span>
                 </a>
             </div>
+            <div class="mv__outer" data-title="articleLinks">
+                <nuxt-link to="/works" class="mv__link">
+                    Works
+                    <TheHomeArrow />
+                </nuxt-link>
+                <button class="mv__link" @click="showSkills" :class="{ 'is-flg': flg.skills }" ref="clickSkills">
+                    Skills
+                    <TheHomeArrow />
+                </button>
+
+                <nuxt-link to="/profile" class="mv__link">
+                    Profile
+                    <TheHomeArrow />
+                </nuxt-link>
+                <button class="mv__link" @click="showContact" :class="{ 'is-flg': flg.contact }" ref="clickContact">
+                    Contact
+                    <TheHomeArrow />
+                </button>
+                <button class="mv__link" @click="resetAll" ref="clickReset">
+                    Reset
+                    <TheHomeArrow />
+                </button>
+            </div>
         </div>
         <!-- Contact -->
         <div class="mv__about mv__about--contact" ref="aboutContact">
@@ -148,6 +203,28 @@
                         </svg>
                     </span>
                 </a>
+                <div class="mv__outer" ref="contactLinks">
+                    <nuxt-link to="/works" class="mv__link">
+                        Works
+                        <TheHomeArrow />
+                    </nuxt-link>
+                    <button class="mv__link" @click="showSkills" :class="{ 'is-flg': flg.skills }" ref="clickSkills">
+                        Skills
+                        <TheHomeArrow />
+                    </button>
+                    <nuxt-link to="/profile" class="mv__link">
+                        Profile
+                        <TheHomeArrow />
+                    </nuxt-link>
+                    <button class="mv__link" @click="showArticles">
+                        Articles
+                        <TheHomeArrow />
+                    </button>
+                    <button class="mv__link" @click="resetAll" ref="clickReset">
+                        Reset
+                        <TheHomeArrow />
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -159,16 +236,16 @@
 <script lang="ts">
 import Vue from 'vue';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { throttle } from '~/assets/scripts/utils/throttle';
 import { gsap } from 'gsap';
+import TheHomeArrow from '~/components/home/TheHomeArrow.vue';
 
 export default Vue.extend({
+    components: { TheHomeArrow },
     data(): {
         winSize: {
             [s: string]: number;
-        };
-        elms: {
-            [s: string]: HTMLElement;
         };
         elmsAll: {
             [s: string]: NodeListOf<HTMLElement>;
@@ -177,22 +254,21 @@ export default Vue.extend({
         three: {
             scene: THREE.Scene;
             renderer: THREE.WebGLRenderer | null;
-            redraw: any;
             camera: THREE.PerspectiveCamera | null;
             cameraFov: number;
             cameraAspect: number;
             cameraFar: number;
-        };
-        texture: {
-            bakedMaterialPink: THREE.MeshBasicMaterial | null;
-            map: null;
+            bananaMesh: THREE.Mesh | null;
+            planeMesh: THREE.Mesh | null;
+            robotMesh: THREE.Mesh | null;
+            pcMesh: THREE.Mesh | null;
+            basketballMesh: THREE.Mesh | null;
         };
         overlay: {
             material: THREE.ShaderMaterial;
         };
         loader: {
             gltfLoader: any;
-            objTextureLoader: any;
         };
         sp: boolean;
         ua: string;
@@ -205,40 +281,47 @@ export default Vue.extend({
             articles: boolean;
             contact: boolean;
         };
+        mousePos: {
+            x: number;
+            y: number;
+            targetX: number;
+            targetY: number;
+            moveX: number;
+            moveY: number;
+        };
     } {
         return {
             winSize: {
                 wd: null,
                 wh: null,
-            },
-            elms: {
-                logo: null,
+                halfWd: null,
+                halfWh: null,
             },
             elmsAll: {
                 articleLinks: null,
                 skillsWeb: null,
+                buttons: null,
             },
             // デバイスピクセル比(最大:2)
             dpr: null,
             three: {
                 scene: null,
                 renderer: null,
-                redraw: null,
                 camera: null,
                 cameraFov: 75,
                 cameraAspect: null,
                 cameraFar: 100,
-            },
-            texture: {
-                bakedMaterialPink: null,
-                map: null,
+                bananaMesh: null,
+                planeMesh: null,
+                robotMesh: null,
+                pcMesh: null,
+                basketballMesh: null,
             },
             overlay: {
                 material: null,
             },
             loader: {
                 gltfLoader: null,
-                objTextureLoader: null,
             },
             sp: null,
             ua: null,
@@ -250,6 +333,14 @@ export default Vue.extend({
                 skills: false,
                 articles: false,
                 contact: false,
+            },
+            mousePos: {
+                x: 0,
+                y: 0,
+                targetX: 0,
+                targetY: 0,
+                moveX: 0.05,
+                moveY: 0.02,
             },
         };
     },
@@ -266,7 +357,9 @@ export default Vue.extend({
             this.setLoading();
             this.initScene();
             this.initCamera();
+            this.initClock();
             this.initRenderer();
+            this.setLight();
             this.setModels();
             this.handleEvents();
 
@@ -280,41 +373,39 @@ export default Vue.extend({
             this.winSize = {
                 wd: window.innerWidth,
                 wh: window.innerHeight,
-            };
-            this.elms = {
-                logo: document.querySelector('[data-logo="text"]'),
+                halfWd: window.innerWidth * 0.5,
+                halfWh: window.innerHeight * 0.5,
             };
             this.elmsAll = {
                 articleLinks: document.querySelectorAll('[data-title="articleLinks"]'),
                 skillsWeb: document.querySelectorAll('[data-title="skillsWeb"]'),
+                buttons: document.querySelectorAll('[data-buttons]'),
             };
             // デバイスピクセル比(最大:2)
             this.dpr = Math.min(window.devicePixelRatio, 2);
             this.three = {
                 scene: null,
                 renderer: null,
-                redraw: null,
                 camera: null,
                 cameraFov: 75,
                 cameraAspect: window.innerWidth / window.innerHeight,
                 cameraFar: 100,
-            };
-            this.texture = {
-                bakedMaterialPink: null,
-                map: null,
+                bananaMesh: null,
+                planeMesh: null,
+                robotMesh: null,
+                pcMesh: null,
+                basketballMesh: null,
             };
             this.overlay = {
                 material: null,
             };
             this.loader = {
                 gltfLoader: null,
-                objTextureLoader: null,
             };
             this.sp = 768;
             this.ua = window.navigator.userAgent.toLowerCase();
             this.mq = window.matchMedia('(max-width: 768px)');
-            this.srcObj = '/obj/robot.glb';
-            this.srcTexture = '/textures/pink.png';
+            this.srcObj = '/obj/all-d.glb';
             this.flg = {
                 loaded: false,
                 skills: false,
@@ -334,6 +425,10 @@ export default Vue.extend({
             this.three.camera = new this.$THREE.PerspectiveCamera(this.three.cameraFov, this.winSize.wd / this.winSize.wh, this.three.cameraAspect, this.three.cameraFar);
             this.three.camera.position.set(0, this.sp ? -2.2 : -1.5, 9);
         },
+        initClock(): void {
+            // 時間計測用
+            this.three.clock = new this.$THREE.Clock();
+        },
         initRenderer(): void {
             // レンダラーを作成
             this.three.renderer = new this.$THREE.WebGLRenderer({
@@ -343,8 +438,8 @@ export default Vue.extend({
             this.three.renderer.setPixelRatio(this.dpr); // retina対応
             this.three.renderer.setSize(this.winSize.wd, this.winSize.wh); // 画面サイズをセット
             this.three.renderer.physicallyCorrectLights = true;
-            this.three.renderer.shadowMap.enabled = true; // シャドウを有効にする
-            this.three.renderer.shadowMap.type = this.$THREE.PCFSoftShadowMap; // PCFShadowMapの結果から更に隣り合う影との間を線形補間して描画する
+            // this.three.renderer.shadowMap.enabled = true; // シャドウを有効にする
+            // this.three.renderer.shadowMap.type = this.$THREE.PCFSoftShadowMap; // PCFShadowMapの結果から更に隣り合う影との間を線形補間して描画する
             this.$refs.canvas.appendChild(this.three.renderer.domElement); // HTMLにcanvasを追加
             this.three.renderer.outputEncoding = this.$THREE.GammaEncoding; // 出力エンコーディングを定義
         },
@@ -360,14 +455,15 @@ export default Vue.extend({
                             value: 0,
                             delay: 1,
                         });
-
                         // loadingBarElementの更新
                         this.$refs.bar.classList.add('is-end');
                         this.$refs.bar.style.transform = '';
                         this.$refs.battery.classList.add('is-end');
-                        this.$refs.buttons.classList.add('is-show');
                         this.$refs.sns.classList.add('is-show');
-                        this.elms.logo.classList.add('is-show');
+                        this.animate();
+                        this.$store.dispatch('flgLogo', {
+                            flgLogo: true,
+                        });
                     }, 1000);
                 },
 
@@ -379,7 +475,15 @@ export default Vue.extend({
                 }
             );
             this.loader.gltfLoader = new GLTFLoader(loadingManager);
-            this.loader.objTextureLoader = new this.$THREE.TextureLoader(loadingManager);
+        },
+        animate(): void {
+            gsap.to(this.elmsAll.buttons, {
+                ease: 'power2.easeOut',
+                stagger: 0.06,
+                y: 0,
+                rotate: 0,
+                delay: 0.4,
+            });
         },
         setOverlay(): void {
             const overlayGeometry = new this.$THREE.PlaneGeometry(2, 2, 1, 1);
@@ -405,41 +509,97 @@ export default Vue.extend({
             const overlay = new this.$THREE.Mesh(overlayGeometry, this.overlay.material);
             this.three.scene.add(overlay);
         },
-        loadTextures(): void {
-            const colorTexturePink = this.loader.objTextureLoader.load(this.srcTexture);
-            this.three.bakedMaterialPink = new this.$THREE.MeshBasicMaterial({ map: colorTexturePink });
-            colorTexturePink.flipY = false;
+        setLight() {
+            // 環境光源(色, 光の強さ)
+            const ambientLight = new this.$THREE.AmbientLight(0x666666);
+            this.three.scene.add(ambientLight);
+
+            const positionArr = [
+                [0, 5, 0, 2],
+                [-5, 3, 2, 2],
+                [5, 3, 2, 2],
+                [0, 3, 5, 1],
+                [0, 3, -5, 2],
+            ];
+
+            for (let i = 0; i < positionArr.length; i++) {
+                // 平行光源(色, 光の強さ)
+                const directionalLight = new this.$THREE.DirectionalLight(0xffffff, positionArr[i][3]);
+                directionalLight.position.set(positionArr[i][0], positionArr[i][1], positionArr[i][2]);
+
+                // カメラの振幅を設定
+                directionalLight.shadow.camera.top = 1;
+                directionalLight.shadow.camera.right = 1;
+                directionalLight.shadow.camera.bottom = -1;
+                directionalLight.shadow.camera.left = -1;
+
+                this.three.scene.add(directionalLight);
+            }
         },
         setModels(): void {
-            this.loadTextures();
             this.setOverlay();
             // glTF形式の3Dモデルを読み込む
-            this.loader.gltfLoader.load(this.srcObj, (obj: any) => {
-                // 3Dモデルをredrawに入れる
-                this.three.redraw = obj.scene;
+            const dracoLoader = new DRACOLoader();
+            dracoLoader.setDecoderPath('/draco/');
 
-                obj.scene.traverse((child: any) => {
-                    // マテリアルを設定
-                    child.material = this.three.bakedMaterialPink;
-                    // 3Dのサイズ設定
-                    child.scale.set(this.sp ? 1 : 1.2, this.sp ? 1 : 1.2, this.sp ? 1 : 1.2);
-                });
+            this.loader.gltfLoader.setDRACOLoader(dracoLoader);
+            this.loader.gltfLoader.load(this.srcObj, (obj) => {
+                this.three.basketballMesh = obj.scene.children.find((child: THREE.Mesh) => child.name === 'basketball');
+                this.three.pcMesh = obj.scene.children.find((child: THREE.Mesh) => child.name === 'pc');
+                this.three.robotMesh = obj.scene.children.find((child: THREE.Mesh) => child.name === 'robot');
+                this.three.planeMesh = obj.scene.children.find((child: THREE.Mesh) => child.name === 'plane');
+                this.three.bananaMesh = obj.scene.children.find((child: THREE.Mesh) => child.name === 'banana');
+
+                //3dメッシュのサイズ
+                this.three.basketballMesh.scale.set(0, 0, 0);
+                this.three.pcMesh.scale.set(0, 0, 0);
+                this.three.robotMesh.scale.set(this.sp ? 0.4 : 0.4, this.sp ? 0.4 : 0.4, this.sp ? 0.4 : 0.4);
+                this.three.planeMesh.scale.set(0, 0, 0);
+                this.three.bananaMesh.scale.set(0, 0, 0);
+
+                //3dメッシュの位置
+                this.three.basketballMesh.position.set(this.sp ? 1 : 6, this.sp ? 1 : -1.2, this.sp ? 1 : 0);
+                this.three.pcMesh.position.set(this.sp ? 1 : 5, this.sp ? 1 : -3, this.sp ? 1 : 0);
+                this.three.robotMesh.position.set(this.sp ? 1 : 5, this.sp ? 1 : 2.5, this.sp ? 1 : 0);
+                this.three.planeMesh.position.set(this.sp ? 1 : 5, this.sp ? 1 : -0.5, this.sp ? 1 : 0);
+                this.three.bananaMesh.position.set(this.sp ? 1 : 6, this.sp ? 1 : -1, this.sp ? 1 : 0);
+
+                //3dメッシュの角度
+                this.three.pcMesh.rotation.set(this.sp ? 0 : 1, this.sp ? 0 : -0.4, this.sp ? 0 : 0.3);
+                this.three.planeMesh.rotation.set(this.sp ? 0 : 0.7, this.sp ? 0 : -1.3, this.sp ? 0 : 0.3);
+                this.three.robotMesh.rotation.set(this.sp ? 0 : 0, this.sp ? 0 : -0.4, this.sp ? 0 : 0);
+                this.three.bananaMesh.rotation.set(0, this.sp ? 0 : -1.4, 0);
+                this.three.basketballMesh.rotation.set(0, 0, this.sp ? 0 : 0.5);
 
                 // シーンに3Dモデルを追加
                 this.three.scene.add(obj.scene);
-                this.flg.loaded = true;
                 // レンダリングを開始する
                 this.rendering();
             });
         },
         rendering(): void {
-            this.three.redraw.rotation.y += 0.002;
+            // 経過時間取得
+            const time = this.three.clock.getElapsedTime();
+
+            if (this.flg.contact != false) {
+                // マウスの位置を取得
+                this.mousePos.x += (this.mousePos.targetX - this.mousePos.x) * this.mousePos.moveX;
+                this.mousePos.y += (this.mousePos.targetY - this.mousePos.y) * this.mousePos.moveY;
+
+                // カメラの位置と回転を調整
+                this.three.camera.position.x = this.mousePos.y * 0.04;
+                this.three.camera.rotation.z = this.mousePos.x * 0.09;
+                this.three.planeMesh.position.y += Math.sin(time) * -0.002;
+            }
 
             // レンダリングを実行
             this.three.renderer.render(this.three.scene, this.three.camera);
             requestAnimationFrame(this.rendering.bind(this));
         },
         handleEvents(): void {
+            // マウスイベント
+            window.addEventListener('pointermove', this.handleMouse.bind(this), false);
+
             // リサイズイベント登録
             window.addEventListener(
                 'resize',
@@ -449,11 +609,17 @@ export default Vue.extend({
                 false
             );
         },
+        handleMouse(event) {
+            this.mousePos.targetX = (this.winSize.halfWd - event.clientX) / this.winSize.halfWd;
+            this.mousePos.targetY = (this.winSize.halfWh - event.clientY) / this.winSize.halfWh;
+        },
         handleResize(): void {
             // リサイズ処理
             this.winSize = {
                 wd: window.innerWidth,
                 wh: window.innerHeight,
+                halfWd: window.innerWidth * 0.5,
+                halfWh: window.innerHeight * 0.5,
             };
             this.dpr = Math.min(window.devicePixelRatio, 2);
             if (this.three.camera) {
@@ -465,48 +631,6 @@ export default Vue.extend({
                 // レンダラーの大きさ更新
                 this.three.renderer.setSize(this.winSize.wd, this.winSize.wh);
                 this.three.renderer.setPixelRatio(this.dpr);
-            }
-        },
-        checkCategoryHover(e) {
-            const type = e.currentTarget.getAttribute('data-button-category');
-            if (type) {
-                switch (type) {
-                    case 'profile':
-                        this.actionProfile();
-                        break;
-                    case 'works':
-                        this.actionWorks();
-                        break;
-                    case 'skills':
-                        this.actionSkills();
-                        break;
-                    case 'articles':
-                        this.actionArticles();
-                        break;
-                    case 'contact':
-                        this.actionContact();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        },
-        checkCategoryClick(e) {
-            const type = e.currentTarget.getAttribute('data-button-category');
-            if (type) {
-                switch (type) {
-                    case 'skills':
-                        this.showSkills();
-                        break;
-                    case 'articles':
-                        this.showArticles();
-                        break;
-                    case 'contact':
-                        this.showContact();
-                        break;
-                    default:
-                        break;
-                }
             }
         },
         checkFlg(): void {
@@ -563,54 +687,154 @@ export default Vue.extend({
                 });
             }
         },
-        actionProfile(): void {
-            gsap.to(this.three.redraw.rotation, {
-                duration: 1,
-                ease: 'power2.easeOut',
-                y: Math.PI * 2,
+        resetModels(): void {
+            this.three.camera.position.set(0, this.sp ? -2.2 : -1.5, 9);
+            this.three.camera.rotation.set(0, 0, 0);
+            gsap.to(this.three.robotMesh.scale, {
+                x: 0,
+                y: 0,
+                z: 0,
             });
-            this.three.bakedMaterialPink.color = new this.$THREE.Color('#008080');
+            gsap.to(this.three.robotMesh.rotation, {
+                y: -0.4,
+            });
+            gsap.to(this.three.robotMesh.position, {
+                z: 0,
+            });
+            gsap.to(this.three.bananaMesh.scale, {
+                x: 0,
+                y: 0,
+                z: 0,
+            });
+            gsap.to(this.three.bananaMesh.rotation, {
+                y: -1.4,
+            });
+            gsap.to(this.three.pcMesh.scale, {
+                x: 0,
+                y: 0,
+                z: 0,
+            });
+            gsap.to(this.three.pcMesh.position, {
+                x: 5,
+                y: -3,
+                z: 0,
+            });
+            gsap.to(this.three.pcMesh.rotation, {
+                x: 1,
+                y: -0.4,
+                z: 0.3,
+            });
+            gsap.to(this.three.basketballMesh.scale, {
+                x: 0,
+                y: 0,
+                z: 0,
+            });
+            gsap.to(this.three.basketballMesh.position, {
+                z: 0,
+            });
+            gsap.to(this.three.basketballMesh.rotation, {
+                y: 0,
+                z: 0.5,
+            });
+            gsap.to(this.three.planeMesh.scale, {
+                x: 0,
+                y: 0,
+                z: 0,
+            });
+            gsap.to(this.three.planeMesh.rotation, {
+                x: 0.7,
+                y: -1.3,
+                z: 0.3,
+            });
+            gsap.to(this.three.planeMesh.position, {
+                x: 5,
+                y: -0.5,
+                z: 0,
+            });
+        },
+        resetAll(): void {
+            this.checkFlg();
+            gsap.to(this.elmsAll.buttons, {
+                ease: 'power2.easeOut',
+                stagger: 0.06,
+                y: 0,
+                rotate: 0,
+            });
+        },
+        actionProfile(): void {
+            this.resetModels();
+            gsap.to(this.three.basketballMesh.scale, {
+                x: 3.5,
+                y: 3.5,
+                z: 3.5,
+            });
+            gsap.to(this.three.basketballMesh.rotation, {
+                y: 3.5,
+                z: 7.5,
+                delay: 0.3,
+            });
+            gsap.to(this.three.basketballMesh.position, {
+                z: 2,
+                delay: 0.3,
+            });
         },
         actionWorks(): void {
-            gsap.to(this.three.redraw.rotation, {
-                duration: 1,
-                ease: 'power2.easeOut',
-                y: 0,
+            this.resetModels();
+            gsap.to(this.three.bananaMesh.scale, {
+                x: 2,
+                y: 2,
+                z: 2,
             });
-            this.three.bakedMaterialPink.color = new this.$THREE.Color('#006400');
+            gsap.to(this.three.bananaMesh.rotation, {
+                y: 0.1,
+                delay: 0.5,
+            });
         },
         actionSkills(): void {
-            gsap.to(this.three.redraw.rotation, {
-                duration: 1,
-                ease: 'power2.easeOut',
-                y: Math.PI * 2,
+            this.resetModels();
+            gsap.to(this.three.robotMesh.scale, {
+                x: 0.4,
+                y: 0.4,
+                z: 0.4,
             });
-            this.three.bakedMaterialPink.color = new this.$THREE.Color('#ffff00');
         },
         actionArticles(): void {
-            gsap.to(this.three.redraw.rotation, {
-                duration: 1,
-                ease: 'power2.easeOut',
-                y: 0,
+            this.resetModels();
+            gsap.to(this.three.pcMesh.scale, {
+                x: 2,
+                y: 2,
+                z: 2,
             });
-            this.three.bakedMaterialPink.color = new this.$THREE.Color('#800000');
         },
         actionContact(): void {
-            gsap.to(this.three.redraw.rotation, {
-                duration: 1,
-                ease: 'power2.easeOut',
-                y: Math.PI * 2,
+            this.resetModels();
+            gsap.to(this.three.planeMesh.scale, {
+                x: 5,
+                y: 5,
+                z: 5,
             });
-            this.three.bakedMaterialPink.color = new this.$THREE.Color('#4b0082');
         },
         showSkills(): void {
+            this.resetModels();
             this.checkFlg();
             this.flg.skills = true;
-            gsap.to(this.three.camera.position, {
-                duration: 1,
+            gsap.to(this.three.robotMesh.scale, {
+                x: 0.4,
+                y: 0.4,
+                z: 0.4,
+            });
+            gsap.to(this.three.robotMesh.position, {
+                z: 1,
+                delay: 0.3,
+            });
+            gsap.to(this.three.robotMesh.rotation, {
+                y: Math.PI * 2,
+            });
+            gsap.to(this.elmsAll.buttons, {
                 ease: 'power2.easeOut',
-                z: 5,
-                y: 0.7,
+                stagger: 0.06,
+                y: '-110%',
+                rotate: 0,
             });
             gsap.to(this.$refs.aboutSkills, {
                 duration: 1.2,
@@ -633,13 +857,29 @@ export default Vue.extend({
             });
         },
         showArticles(): void {
+            this.resetModels();
             this.checkFlg();
             this.flg.articles = true;
-            gsap.to(this.three.camera.position, {
-                duration: 1,
+            gsap.to(this.three.pcMesh.scale, {
+                x: 2,
+                y: 2,
+                z: 2,
+            });
+            gsap.to(this.three.pcMesh.position, {
+                x: this.sp ? 0 : 0,
+                y: this.sp ? -4 : -3,
+                z: this.sp ? 4 : 8,
+            });
+            gsap.to(this.three.pcMesh.rotation, {
+                x: 0,
+                y: 0,
+                z: 0,
+            });
+            gsap.to(this.elmsAll.buttons, {
                 ease: 'power2.easeOut',
-                z: 6,
-                y: -2.3,
+                stagger: 0.06,
+                y: '-110%',
+                rotate: 0,
             });
             gsap.to(this.$refs.aboutArticles, {
                 duration: 1.2,
@@ -662,13 +902,29 @@ export default Vue.extend({
             });
         },
         showContact(): void {
+            this.resetModels();
             this.checkFlg();
             this.flg.contact = true;
-            gsap.to(this.three.camera.position, {
-                duration: 1,
+            gsap.to(this.three.planeMesh.scale, {
+                x: this.sp ? 2.5 : 5,
+                y: this.sp ? 2.5 : 5,
+                z: this.sp ? 2.5 : 5,
+            });
+            gsap.to(this.three.planeMesh.rotation, {
+                z: 5.8,
+                delay: 0.3,
+            });
+            gsap.to(this.three.planeMesh.position, {
+                x: this.sp ? 0 : 3,
+                y: this.sp ? -4 : -3,
+                z: 1,
+                delay: 0.3,
+            });
+            gsap.to(this.elmsAll.buttons, {
                 ease: 'power2.easeOut',
-                z: 7,
-                y: -4,
+                stagger: 0.06,
+                y: '-110%',
+                rotate: 0,
             });
             gsap.to(this.$refs.aboutContact, {
                 duration: 1.2,
@@ -683,6 +939,13 @@ export default Vue.extend({
                 opacity: 1,
             });
             gsap.to(this.$refs.titleTwitter, {
+                delay: 0.7,
+                duration: 1,
+                ease: 'power2.ease',
+                y: 0,
+                opacity: 1,
+            });
+            gsap.to(this.$refs.contactLinks, {
                 delay: 0.7,
                 duration: 1,
                 ease: 'power2.ease',
