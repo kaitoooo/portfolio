@@ -4,32 +4,70 @@
     position: fixed;
     top: 2rem;
     left: 2rem;
-    filter: contrast(20);
-    overflow: hidden;
-    mix-blend-mode: difference;
-    z-index: 100;
+    z-index: map-get(g.$z, 'logo');
     @include g.mq(mobile) {
         top: g.get_vw(30);
         left: g.get_vw(10);
     }
 
     &__link {
-        color: g.$color-light-gray;
-        font-weight: 100;
-        font-size: 2rem;
-        font-family: g.$font-en;
+        display: block;
         text-decoration: none;
-        letter-spacing: -2px;
-        padding: 1.2rem;
         opacity: 0;
-        @include g.mq(mobile) {
-            font-size: g.get_vw(30);
-            padding: g.get_vw(20);
-        }
 
         &.is-show {
             opacity: 1;
             transition: opacity 0.5s ease;
+        }
+    }
+
+    &__outer {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 6px;
+            height: 9px;
+            background: g.$color-white;
+            transition: all 0.2s ease-out;
+            @include g.mq(mobile) {
+                height: g.get_vw(8);
+                bottom: g.get_vw(10);
+            }
+        }
+
+        &:hover {
+            &::before {
+                transform: translateY(10px);
+                @include g.mq(mobile) {
+                    transform: translateY(6px);
+                }
+            }
+        }
+    }
+
+    &__inner {
+        position: relative;
+        display: inline-block;
+        font-size: 3rem;
+        font-family: g.$font-en;
+        background: linear-gradient(to bottom, g.$color-black, g.$color-black 60%, g.$color-white 60%, g.$color-white 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: g.$color-white;
+        mix-blend-mode: difference;
+        background-repeat: no-repeat;
+        transition: background 0.2s ease-out;
+        cursor: pointer;
+        @include g.mq(mobile) {
+            font-size: g.get_vw(45);
+        }
+
+        &:hover {
+            background-position: 0 11px;
         }
     }
 }
