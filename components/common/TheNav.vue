@@ -81,6 +81,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { throttle } from '~/assets/scripts/utils/throttle';
 import { gsap } from 'gsap';
 
@@ -97,7 +98,7 @@ export default Vue.extend({
         three: {
             scene: THREE.Scene;
             renderer: THREE.WebGLRenderer | null;
-            redraw: any;
+            redraw: THREE.Mesh | null;
             camera: THREE.PerspectiveCamera | null;
             cameraFov: number;
             cameraAspect: number;
@@ -106,7 +107,7 @@ export default Vue.extend({
         loader: {
             gltfLoader: any;
         };
-        sp: any;
+        sp: boolean;
         ua: string;
         mq: MediaQueryList;
         srcObj: string;
@@ -147,10 +148,10 @@ export default Vue.extend({
             loader: {
                 gltfLoader: null,
             },
-            sp: 768,
+            sp: null,
             ua: null,
             mq: null,
-            srcObj: '/obj/hamburger.glb',
+            srcObj: '/obj/hamburger-d.glb',
             mousePos: {
                 x: 0.2,
                 y: 0,
@@ -163,6 +164,9 @@ export default Vue.extend({
                 loaded: false,
             },
         };
+    },
+    beforeDestroy() {
+        this.init();
     },
     mounted() {
         this.init();
@@ -205,6 +209,7 @@ export default Vue.extend({
                 menu: document.querySelector('[data-nav="menu"]'),
             };
             this.items = document.querySelectorAll('[data-nav="items"]');
+            this.sp = 768;
             this.dpr = Math.min(window.devicePixelRatio, 2);
             this.ua = window.navigator.userAgent.toLowerCase();
             this.mq = window.matchMedia('(max-width: 768px)');
@@ -276,19 +281,24 @@ export default Vue.extend({
             this.three.renderer.setPixelRatio(this.dpr); // retina対応
             this.three.renderer.setSize(this.winSize.wd, this.winSize.wh); // 画面サイズをセット
             this.three.renderer.physicallyCorrectLights = true;
-            this.three.renderer.shadowMap.enabled = true; // シャドウを有効にする
-            this.three.renderer.shadowMap.type = this.$THREE.PCFSoftShadowMap; // PCFShadowMapの結果から更に隣り合う影との間を線形補間して描画する
+            // this.three.renderer.shadowMap.enabled = true; // シャドウを有効にする
+            // this.three.renderer.shadowMap.type = this.$THREE.PCFSoftShadowMap; // PCFShadowMapの結果から更に隣り合う影との間を線形補間して描画する
             this.elms.canvas.appendChild(this.three.renderer.domElement); // HTMLにcanvasを追加
             this.three.renderer.outputEncoding = this.$THREE.GammaEncoding; // 出力エンコーディングを定義
         },
         setModels(): void {
+            const dracoLoader = new DRACOLoader();
+            dracoLoader.setDecoderPath('/draco/');
+
             this.loader.gltfLoader = new GLTFLoader();
+            this.loader.gltfLoader.setDRACOLoader(dracoLoader);
+
             // glTF形式の3Dモデルを読み込む
             this.loader.gltfLoader.load(this.srcObj, (obj: any) => {
                 // 3Dモデルをredrawに入れる
                 this.three.redraw = obj.scene;
 
-                obj.scene.traverse((child: any) => {
+                obj.scene.traverse((child: THREE.Mesh) => {
                     child.scale.set(this.sp ? 0.8 : 0.8, this.sp ? 0.8 : 0.8, this.sp ? 0.8 : 0.8);
                     child.rotation.set(this.sp ? 0.1 : 0.4, 0, 0);
                 });
@@ -349,7 +359,7 @@ export default Vue.extend({
             this.mousePos.targetX = (this.winSize.halfWd - event.clientX) / this.winSize.halfWd;
             this.mousePos.targetY = (this.winSize.halfWh - event.clientY) / this.winSize.halfWh;
         },
-        toggle(): any {
+        toggle(): void {
             gsap.config({
                 force3D: true,
             });
