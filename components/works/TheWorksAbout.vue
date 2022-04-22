@@ -31,6 +31,18 @@ export default Vue.extend({
             scroll: 0,
             thumbnailList: (): Array<WorksAll> => [
                 {
+                    link: 'https://kaito-takase.dev/3d-glasses/',
+                    png: '3d-glasses.png',
+                    pngSp: '3d-glasses.png',
+                    webp: '3d-glasses.webp',
+                    webpSp: '3d-glasses.webp',
+                    alt: '3D Demo Glasses',
+                    width: 1341,
+                    height: 733,
+                    title: '3D Demo Glasses',
+                    day: '2022 / 4 / 22',
+                },
+                {
                     link: 'https://kaito-takase.dev/2d-glasses/',
                     png: '2d-glasses.png',
                     pngSp: '2d-glasses.png',
